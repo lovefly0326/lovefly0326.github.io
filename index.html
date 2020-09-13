@@ -125,17 +125,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">4</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">5</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">3</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">4</span></a>
 
   </li>
   </ul>
@@ -163,6 +163,85 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.lovefly0326.com/2020/09/13/iframe.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="love_fly">
+      <meta itemprop="description" content="个人学习笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="love_fly">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/13/iframe.html" class="post-title-link" itemprop="url">iframe 通信</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-13 15:45:13 / 修改时间：15:52:53" itemprop="dateCreated datePublished" datetime="2020-09-13T15:45:13+08:00">2020-09-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="iframe-父子通信"><a href="#iframe-父子通信" class="headerlink" title="iframe 父子通信"></a>iframe 父子通信</h1><blockquote>
+<p>iframe的通信分两种，同源与非同源(<font color='red'>重点关注非同源</font>)</p>
+</blockquote>
+<h2 id="一、非跨域"><a href="#一、非跨域" class="headerlink" title="一、非跨域"></a>一、非跨域</h2><h3 id="父页面访问子页面"><a href="#父页面访问子页面" class="headerlink" title="父页面访问子页面"></a>父页面访问子页面</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span></span></span><br><span class="line"><span class="tag">  <span class="attr">name</span>=<span class="string">"childIframe"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">id</span>=<span class="string">"childIframe"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">src</span>=<span class="string">"/child.html"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">frameborder</span>=<span class="string">"0"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">width</span>=<span class="string">"200px"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">height</span>=<span class="string">"200px"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取子页面的window对象</span></span><br><span class="line"><span class="comment">// 方式一，通过id</span></span><br><span class="line"><span class="keyword">var</span> childWindow= <span class="built_in">document</span>.getElementById(<span class="string">'childIframe'</span>).contentWindow;</span><br><span class="line"><span class="comment">// 方式二，通过name</span></span><br><span class="line"><span class="comment">// var childWindow = window.frames['childIframe'];</span></span><br><span class="line"><span class="comment">// 方式三，下标</span></span><br><span class="line"><span class="comment">// var childWindow = window.frames[0].window;</span></span><br><span class="line">childWindow.childFun();</span><br></pre></td></tr></table></figure>
+<h3 id="子页面访问父页面"><a href="#子页面访问父页面" class="headerlink" title="子页面访问父页面"></a>子页面访问父页面</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取父页面的window对象</span></span><br><span class="line"><span class="keyword">var</span> parentWindow = <span class="built_in">window</span>.parent;</span><br><span class="line"><span class="comment">// 获取顶层页面的window对象</span></span><br><span class="line"><span class="comment">// var parentWindow = window.top;</span></span><br><span class="line">parentWindow.parentFun();</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、跨域"><a href="#二、跨域" class="headerlink" title="二、跨域"></a>二、跨域</h2><blockquote>
+<p>iframe跨域通信，通过<code>postMessage</code>实现 <br/><br>otherWindow.postMessage(message, targetOrigin, [transfer]);<br/><br>message 为消息数据；targetOrigin 为可接收消息的窗口origin，可设置为*，即允许所有(不建议)<br/></p>
+</blockquote>
+<h3 id="父传子"><a href="#父传子" class="headerlink" title="父传子"></a>父传子</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 子页面监听message事件</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 发送方窗口的origin</span></span><br><span class="line">  <span class="keyword">var</span> origin = event.origin || event.originalEvent.origin;</span><br><span class="line">  <span class="comment">// 接收的数据</span></span><br><span class="line">  <span class="keyword">var</span> data = event.data;</span><br><span class="line">  <span class="comment">// 发送窗口的引用</span></span><br><span class="line">  <span class="keyword">var</span> sourceWindow = event.source;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 父页面触发 postMessage</span></span><br><span class="line"><span class="built_in">window</span>.frames[<span class="string">'childIframe'</span>].postMessage(<span class="string">'测试父传子'</span>, <span class="string">'http://localhost:3000'</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="子传父"><a href="#子传父" class="headerlink" title="子传父"></a>子传父</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父页面监听message事件</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 发送方窗口的origin</span></span><br><span class="line">  <span class="keyword">var</span> origin = event.origin || event.originalEvent.origin;</span><br><span class="line">  <span class="comment">// 接收的数据</span></span><br><span class="line">  <span class="keyword">var</span> data = event.data;</span><br><span class="line">  <span class="comment">// 发送窗口的引用</span></span><br><span class="line">  <span class="keyword">var</span> sourceWindow = event.source;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子页面触发 postMessage</span></span><br><span class="line"><span class="built_in">window</span>.parent.postMessage(<span class="string">'测试子传父'</span>,<span class="string">'http://localhost:3001'</span>);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -198,7 +277,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-27 16:21:58" itemprop="dateModified" datetime="2020-07-27T16:21:58+08:00">2020-07-27</time>
+                <time title="修改时间：2020-09-13 15:48:57" itemprop="dateModified" datetime="2020-09-13T15:48:57+08:00">2020-09-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -206,11 +285,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/canvas/" itemprop="url" rel="index"><span itemprop="name">canvas</span></a>
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
                 </span>
             </span>
 
@@ -225,7 +300,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>线上合同签署</p>
+          <h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><blockquote>
+<p>线上合同签署</p>
+</blockquote>
 <h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><ul>
 <li>pc端结合mousedown、mousemove、mouseup、mouseleave事件</li>
 <li>移动端结合touchstart、touchmove、touchend事件</li>
@@ -508,20 +585,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
