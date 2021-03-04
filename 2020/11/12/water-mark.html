@@ -21,22 +21,22 @@
     var CONFIG = {"hostname":"blog.lovefly0326.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="应用场景 为网页添加水印，多用于内部网页或文档的防泄密操作  具体实现 动态创建 canvas 画布，填充水印文本，设置需要的样式 将 canvas 画布的内容导出为 base64 图片 动态创建或事先定义好水印的容器 dom 元素，然后将 base64 图片绑定为该 dom 的背景图片  html1&lt;div id&#x3D;&quot;watermark&quot;&gt;&lt;&#x2F;div&gt;  css1234">
+  <meta name="description" content="应用场景 为网页添加水印，多用于内部网页或文档的防泄密操作  具体实现 动态创建 canvas 画布，填充水印文本，设置需要的样式 将 canvas 画布的内容导出为 base64 图片 动态创建或事先定义好水印的容器 dom 元素，然后将 base64 图片绑定为该 dom 的背景图片">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网页水印效果实现">
-<meta property="og:url" content="http://blog.lovefly0326.com/2021/01/12/water-mark.html">
+<meta property="og:url" content="http://blog.lovefly0326.com/2020/11/12/water-mark.html">
 <meta property="og:site_name" content="love_fly">
-<meta property="og:description" content="应用场景 为网页添加水印，多用于内部网页或文档的防泄密操作  具体实现 动态创建 canvas 画布，填充水印文本，设置需要的样式 将 canvas 画布的内容导出为 base64 图片 动态创建或事先定义好水印的容器 dom 元素，然后将 base64 图片绑定为该 dom 的背景图片  html1&lt;div id&#x3D;&quot;watermark&quot;&gt;&lt;&#x2F;div&gt;  css1234">
+<meta property="og:description" content="应用场景 为网页添加水印，多用于内部网页或文档的防泄密操作  具体实现 动态创建 canvas 画布，填充水印文本，设置需要的样式 将 canvas 画布的内容导出为 base64 图片 动态创建或事先定义好水印的容器 dom 元素，然后将 base64 图片绑定为该 dom 的背景图片">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://blog.lovefly0326.com/images/watermark.png">
-<meta property="article:published_time" content="2021-01-12T03:15:43.000Z">
-<meta property="article:modified_time" content="2021-01-12T05:05:36.592Z">
+<meta property="article:published_time" content="2020-11-12T03:15:43.000Z">
+<meta property="article:modified_time" content="2021-03-04T09:39:50.317Z">
 <meta property="article:author" content="love_fly">
 <meta property="article:tag" content="canvas">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://blog.lovefly0326.com/images/watermark.png">
 
-<link rel="canonical" href="http://blog.lovefly0326.com/2021/01/12/water-mark.html">
+<link rel="canonical" href="http://blog.lovefly0326.com/2020/11/12/water-mark.html">
 
 
 <script id="page-configurations">
@@ -123,17 +123,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">5</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">5</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">11</span></a>
 
   </li>
   </ul>
@@ -166,7 +166,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.lovefly0326.com/2021/01/12/water-mark.html">
+    <link itemprop="mainEntityOfPage" href="http://blog.lovefly0326.com/2020/11/12/water-mark.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
@@ -188,10 +188,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-01-12 11:15:43 / 修改时间：13:05:36" itemprop="dateCreated datePublished" datetime="2021-01-12T11:15:43+08:00">2021-01-12</time>
+              <time title="创建时间：2020-11-12 11:15:43" itemprop="dateCreated datePublished" datetime="2020-11-12T11:15:43+08:00">2020-11-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-04 17:39:50" itemprop="dateModified" datetime="2021-03-04T17:39:50+08:00">2021-03-04</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -230,6 +236,8 @@
 <li>将 canvas 画布的内容导出为 base64 图片</li>
 <li>动态创建或事先定义好水印的容器 dom 元素，然后将 base64 图片绑定为该 dom 的背景图片</li>
 </ul>
+<a id="more"></a>
+
 <h3 id="html"><a href="#html" class="headerlink" title="html"></a>html</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"watermark"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="css"><a href="#css" class="headerlink" title="css"></a>css</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#watermark</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100vw</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100vh</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -259,7 +267,10 @@
     <a href="/2020/09/13/iframe.html" rel="prev" title="iframe 通信">
       <i class="fa fa-chevron-left"></i> iframe 通信
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/03/04/odoo12/Qweb.html" rel="next" title="odoo Qweb">
+      odoo Qweb <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -334,20 +345,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

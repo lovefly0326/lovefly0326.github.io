@@ -21,33 +21,38 @@
     var CONFIG = {"hostname":"blog.lovefly0326.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="iframe 父子通信 iframe的通信分两种，同源与非同源(重点关注非同源)">
-<meta property="og:type" content="article">
-<meta property="og:title" content="iframe 通信">
-<meta property="og:url" content="http://blog.lovefly0326.com/2020/09/13/iframe.html">
+  <meta name="description" content="个人学习笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="love_fly">
+<meta property="og:url" content="http://blog.lovefly0326.com/page/2/index.html">
 <meta property="og:site_name" content="love_fly">
-<meta property="og:description" content="iframe 父子通信 iframe的通信分两种，同源与非同源(重点关注非同源)">
+<meta property="og:description" content="个人学习笔记">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-09-13T07:45:13.000Z">
-<meta property="article:modified_time" content="2021-03-04T09:41:22.091Z">
 <meta property="article:author" content="love_fly">
-<meta property="article:tag" content="iframe">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content=" html">
+<meta property="article:tag" content=" css">
+<meta property="article:tag" content=" vue">
+<meta property="article:tag" content=" react">
+<meta property="article:tag" content=" nginx">
+<meta property="article:tag" content=" docker">
+<meta property="article:tag" content=" odoo">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://blog.lovefly0326.com/2020/09/13/iframe.html">
+<link rel="canonical" href="http://blog.lovefly0326.com/page/2/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : false,
-    isPost : true,
+    isHome : true,
+    isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>iframe 通信 | love_fly</title>
+  <title>love_fly</title>
   
 
 
@@ -157,10 +162,9 @@
         <div class="content-wrap">
           
 
-          <div class="content post posts-expand">
+          <div class="content index posts-expand">
             
-
-    
+      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -176,9 +180,10 @@
       <meta itemprop="name" content="love_fly">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          iframe 通信
-        </h1>
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/13/iframe.html" class="post-title-link" itemprop="url">iframe 通信</a>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -207,13 +212,6 @@
             </span>
 
           
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
 
         </div>
       </header>
@@ -224,53 +222,207 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="iframe-父子通信"><a href="#iframe-父子通信" class="headerlink" title="iframe 父子通信"></a>iframe 父子通信</h1><blockquote>
+          <h1 id="iframe-父子通信"><a href="#iframe-父子通信" class="headerlink" title="iframe 父子通信"></a>iframe 父子通信</h1><blockquote>
 <p>iframe的通信分两种，同源与非同源(<font color='red'>重点关注非同源</font>)</p>
 </blockquote>
-<a id="more"></a>
-
-<h2 id="一、非跨域"><a href="#一、非跨域" class="headerlink" title="一、非跨域"></a>一、非跨域</h2><h3 id="父页面访问子页面"><a href="#父页面访问子页面" class="headerlink" title="父页面访问子页面"></a>父页面访问子页面</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span></span></span><br><span class="line"><span class="tag">  <span class="attr">name</span>=<span class="string">"childIframe"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">id</span>=<span class="string">"childIframe"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">src</span>=<span class="string">"/child.html"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">frameborder</span>=<span class="string">"0"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">width</span>=<span class="string">"200px"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">height</span>=<span class="string">"200px"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取子页面的window对象</span></span><br><span class="line"><span class="comment">// 方式一，通过id</span></span><br><span class="line"><span class="keyword">var</span> childWindow= <span class="built_in">document</span>.getElementById(<span class="string">'childIframe'</span>).contentWindow;</span><br><span class="line"><span class="comment">// 方式二，通过name</span></span><br><span class="line"><span class="comment">// var childWindow = window.frames['childIframe'];</span></span><br><span class="line"><span class="comment">// 方式三，下标</span></span><br><span class="line"><span class="comment">// var childWindow = window.frames[0].window;</span></span><br><span class="line">childWindow.childFun();</span><br></pre></td></tr></table></figure>
-<h3 id="子页面访问父页面"><a href="#子页面访问父页面" class="headerlink" title="子页面访问父页面"></a>子页面访问父页面</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取父页面的window对象</span></span><br><span class="line"><span class="keyword">var</span> parentWindow = <span class="built_in">window</span>.parent;</span><br><span class="line"><span class="comment">// 获取顶层页面的window对象</span></span><br><span class="line"><span class="comment">// var parentWindow = window.top;</span></span><br><span class="line">parentWindow.parentFun();</span><br></pre></td></tr></table></figure>
-
-<h2 id="二、跨域"><a href="#二、跨域" class="headerlink" title="二、跨域"></a>二、跨域</h2><blockquote>
-<p>iframe跨域通信，通过<code>postMessage</code>实现 <br/><br>otherWindow.postMessage(message, targetOrigin, [transfer]);<br/><br>message 为消息数据；targetOrigin 为可接收消息的窗口origin，可设置为*，即允许所有(不建议)<br/></p>
-</blockquote>
-<h3 id="父传子"><a href="#父传子" class="headerlink" title="父传子"></a>父传子</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 子页面监听message事件</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 发送方窗口的origin</span></span><br><span class="line">  <span class="keyword">var</span> origin = event.origin || event.originalEvent.origin;</span><br><span class="line">  <span class="comment">// 接收的数据</span></span><br><span class="line">  <span class="keyword">var</span> data = event.data;</span><br><span class="line">  <span class="comment">// 发送窗口的引用</span></span><br><span class="line">  <span class="keyword">var</span> sourceWindow = event.source;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 父页面触发 postMessage</span></span><br><span class="line"><span class="built_in">window</span>.frames[<span class="string">'childIframe'</span>].postMessage(<span class="string">'测试父传子'</span>, <span class="string">'http://localhost:3000'</span>);</span><br></pre></td></tr></table></figure>
-
-<h3 id="子传父"><a href="#子传父" class="headerlink" title="子传父"></a>子传父</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父页面监听message事件</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 发送方窗口的origin</span></span><br><span class="line">  <span class="keyword">var</span> origin = event.origin || event.originalEvent.origin;</span><br><span class="line">  <span class="comment">// 接收的数据</span></span><br><span class="line">  <span class="keyword">var</span> data = event.data;</span><br><span class="line">  <span class="comment">// 发送窗口的引用</span></span><br><span class="line">  <span class="keyword">var</span> sourceWindow = event.source;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子页面触发 postMessage</span></span><br><span class="line"><span class="built_in">window</span>.parent.postMessage(<span class="string">'测试子传父'</span>,<span class="string">'http://localhost:3001'</span>);</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/09/13/iframe.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
     </div>
 
     
     
     
-
       <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/iframe/" rel="tag"><i class="fa fa-tag"></i> iframe</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2020/07/26/hand-write.html" rel="prev" title="基于vue、canvas的手写板(兼容pc、移动)">
-      <i class="fa fa-chevron-left"></i> 基于vue、canvas的手写板(兼容pc、移动)
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/11/12/water-mark.html" rel="next" title="网页水印效果实现">
-      网页水印效果实现 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
+        <div class="post-eof"></div>
       </footer>
-    
   </article>
   
   
   
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.lovefly0326.com/2020/11/12/water-mark.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="love_fly">
+      <meta itemprop="description" content="个人学习笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="love_fly">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/12/water-mark.html" class="post-title-link" itemprop="url">网页水印效果实现</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-12 11:15:43" itemprop="dateCreated datePublished" datetime="2020-11-12T11:15:43+08:00">2020-11-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-04 17:39:50" itemprop="dateModified" datetime="2021-03-04T17:39:50+08:00">2021-03-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <!-- @format -->
+
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><blockquote>
+<p>为网页添加水印，多用于内部网页或文档的防泄密操作</p>
+</blockquote>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><ul>
+<li>动态创建 canvas 画布，填充水印文本，设置需要的样式</li>
+<li>将 canvas 画布的内容导出为 base64 图片</li>
+<li>动态创建或事先定义好水印的容器 dom 元素，然后将 base64 图片绑定为该 dom 的背景图片</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/11/12/water-mark.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.lovefly0326.com/2021/03/04/odoo12/%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="love_fly">
+      <meta itemprop="description" content="个人学习笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="love_fly">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/04/odoo12/%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD.html" class="post-title-link" itemprop="url">odoo常用功能</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-04 17:05:00 / 修改时间：17:47:03" itemprop="dateCreated datePublished" datetime="2021-03-04T17:05:00+08:00">2021-03-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/odoo12/" itemprop="url" rel="index"><span itemprop="name">odoo12</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="odoo常用功能"><a href="#odoo常用功能" class="headerlink" title="odoo常用功能"></a>odoo常用功能</h1><h2 id="自定义字段挂件"><a href="#自定义字段挂件" class="headerlink" title="自定义字段挂件"></a>自定义字段挂件</h2><h3 id="创建新部件"><a href="#创建新部件" class="headerlink" title="创建新部件"></a>创建新部件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> FieldChar = <span class="built_in">require</span>(<span class="string">'web.basic_fields'</span>).FieldChar;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> CustomFieldChar = FieldChar.extend(&#123;</span><br><span class="line">    _renderReadonly: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// implement some custom logic here</span></span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fieldRegistry = <span class="built_in">require</span>(<span class="string">'web.field_registry'</span>);</span><br><span class="line"></span><br><span class="line">fieldRegistry.add(<span class="string">'my_custom_field'</span>, CustomFieldChar);</span><br></pre></td></tr></table></figure>
+
+<h3 id="视图中使用-widget"><a href="#视图中使用-widget" class="headerlink" title="视图中使用(widget)"></a>视图中使用(widget)</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"somefield"</span> <span class="attr">widget</span>=<span class="string">"my_custom_field"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/04/odoo12/%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -322,7 +474,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#iframe-父子通信"><span class="nav-number">1.</span> <span class="nav-text">iframe 父子通信</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、非跨域"><span class="nav-number">1.1.</span> <span class="nav-text">一、非跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#父页面访问子页面"><span class="nav-number">1.1.1.</span> <span class="nav-text">父页面访问子页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子页面访问父页面"><span class="nav-number">1.1.2.</span> <span class="nav-text">子页面访问父页面</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、跨域"><span class="nav-number">1.2.</span> <span class="nav-text">二、跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#父传子"><span class="nav-number">1.2.1.</span> <span class="nav-text">父传子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子传父"><span class="nav-number">1.2.2.</span> <span class="nav-text">子传父</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
