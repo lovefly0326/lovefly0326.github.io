@@ -21,15 +21,15 @@
     var CONFIG = {"hostname":"blog.lovefly0326.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Form form视图用于显示单个记录的详细数据   标准HTML  结构组件  语义化组件   结构组件 结构组件主要用于控制页面布局  header 在sheet上方提供了一个全宽位置，通常用于显示一些特定的操作按钮和状态小部件  sheet 可以用作直接子窗体，以获得更窄、更具响应性的窗体布局不使用sheet，直接铺满全屏使用sheet，会将内容显示在一个特定的窗体内">
+  <meta name="description" content="Form form 视图用于显示单个记录的详细数据   标准 HTML  结构组件  语义化组件   结构组件 结构组件主要用于控制页面布局  header 在 sheet 上方提供了一个全宽位置，通常用于显示一些特定的操作按钮和状态小部件  sheet 可以用作直接子窗体，以获得更窄、更具响应性的窗体布局不使用 sheet，直接铺满全屏使用 sheet，会将内容显示在一个特定的窗体内">
 <meta property="og:type" content="article">
 <meta property="og:title" content="odoo form视图">
 <meta property="og:url" content="http://blog.lovefly0326.com/2021/03/04/odoo12/form%E8%A7%86%E5%9B%BE.html">
 <meta property="og:site_name" content="love_fly">
-<meta property="og:description" content="Form form视图用于显示单个记录的详细数据   标准HTML  结构组件  语义化组件   结构组件 结构组件主要用于控制页面布局  header 在sheet上方提供了一个全宽位置，通常用于显示一些特定的操作按钮和状态小部件  sheet 可以用作直接子窗体，以获得更窄、更具响应性的窗体布局不使用sheet，直接铺满全屏使用sheet，会将内容显示在一个特定的窗体内">
+<meta property="og:description" content="Form form 视图用于显示单个记录的详细数据   标准 HTML  结构组件  语义化组件   结构组件 结构组件主要用于控制页面布局  header 在 sheet 上方提供了一个全宽位置，通常用于显示一些特定的操作按钮和状态小部件  sheet 可以用作直接子窗体，以获得更窄、更具响应性的窗体布局不使用 sheet，直接铺满全屏使用 sheet，会将内容显示在一个特定的窗体内">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-04T09:05:00.000Z">
-<meta property="article:modified_time" content="2021-03-04T09:37:46.204Z">
+<meta property="article:modified_time" content="2021-03-05T03:31:49.881Z">
 <meta property="article:author" content="love_fly">
 <meta property="article:tag" content="odoo12">
 <meta name="twitter:card" content="summary">
@@ -186,10 +186,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-03-04 17:05:00 / 修改时间：17:37:46" itemprop="dateCreated datePublished" datetime="2021-03-04T17:05:00+08:00">2021-03-04</time>
+              <time title="创建时间：2021-03-04 17:05:00" itemprop="dateCreated datePublished" datetime="2021-03-04T17:05:00+08:00">2021-03-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-05 11:31:49" itemprop="dateModified" datetime="2021-03-05T11:31:49+08:00">2021-03-05</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -219,10 +225,10 @@
 
       
         <h1 id="Form"><a href="#Form" class="headerlink" title="Form"></a>Form</h1><blockquote>
-<p>form视图用于显示单个记录的详细数据</p>
+<p>form 视图用于显示单个记录的详细数据</p>
 </blockquote>
 <ul>
-<li><p>标准HTML</p>
+<li><p>标准 HTML</p>
 </li>
 <li><p>结构组件</p>
 </li>
@@ -233,41 +239,41 @@
 <p>结构组件主要用于控制页面布局</p>
 </blockquote>
 <h3 id="header"><a href="#header" class="headerlink" title="header"></a>header</h3><blockquote>
-<p>在sheet上方提供了一个全宽位置，通常用于显示一些特定的操作按钮和状态小部件</p>
+<p>在 sheet 上方提供了一个全宽位置，通常用于显示一些特定的操作按钮和状态小部件</p>
 </blockquote>
 <h3 id="sheet"><a href="#sheet" class="headerlink" title="sheet"></a>sheet</h3><blockquote>
-<p>可以用作直接子窗体，以获得更窄、更具响应性的窗体布局<br>不使用sheet，直接铺满全屏<br>使用sheet，会将内容显示在一个特定的窗体内</p>
+<p>可以用作直接子窗体，以获得更窄、更具响应性的窗体布局<br>不使用 sheet，直接铺满全屏<br>使用 sheet，会将内容显示在一个特定的窗体内</p>
 </blockquote>
 <a id="more"></a>
 
 <h3 id="notebook"><a href="#notebook" class="headerlink" title="notebook"></a>notebook</h3><blockquote>
-<p>定义tab选项卡（sheet页），每个选项卡通过<code>page</code>子元素定义</p>
+<p>定义 tab 选项卡（sheet 页），每个选项卡通过<code>page</code>子元素定义</p>
 </blockquote>
 <ul>
-<li><p><code>page</code> </p>
+<li><p><code>page</code></p>
 <ul>
-<li><p><code>string</code> tab页的名字</p>
+<li><p><code>string</code> tab 页的名字</p>
 </li>
 <li><p><code>attrs</code> 基于其他字段值的动态属性</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">page</span> <span class="attr">string</span>=<span class="string">"Detailed Operations"</span> <span class="attr">attrs</span>=<span class="string">"&#123;'invisible': [('show_operations', '=', False)]&#125;"</span>&gt;</span></span><br><span class="line">	...</span><br><span class="line"><span class="tag">&lt;/<span class="name">page</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">page</span> <span class="attr">string</span>=<span class="string">"Detailed Operations"</span> <span class="attr">attrs</span>=<span class="string">"&#123;'invisible': [('show_operations', '=', False)]&#125;"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">page</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
 </li>
 </ul>
 <h3 id="group"><a href="#group" class="headerlink" title="group"></a>group</h3><blockquote>
-<p>用于定义form视图的列布局<br>全部划分为12列<br>内层group占用的列数由col和colspan共同决定</p>
+<p>用于定义 form 视图的列布局<br>全部划分为 12 列<br>内层 group 占用的列数由 col 和 colspan 共同决定</p>
 </blockquote>
 <ul>
-<li><p><code>col</code> 用于自定义组中的列数，默认值是2</p>
+<li><p><code>col</code> 用于自定义组中的列数，默认值是 2</p>
 </li>
-<li><p><code>colspan</code> 用于定于内层group占用的列数，默认值是1</p>
+<li><p><code>colspan</code> 用于定于内层 group 占用的列数，默认值是 1</p>
 <ul>
 <li>用于控制<code>o_group_col_n</code>类中<code>n</code>的值，<code>n = 12/col * colspan</code></li>
 </ul>
 </li>
 <li><p><code>string</code> 组标题</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">group</span> <span class="attr">col</span>=<span class="string">"3"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">group</span> <span class="attr">string</span>=<span class="string">"cnwncsak"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">group</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 该组占据8列，即 n=12/3*2=8 --&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">group</span> <span class="attr">colspan</span>=<span class="string">"2"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">group</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">group</span>&gt;</span>...<span class="tag">&lt;/<span class="name">group</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">group</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">group</span> <span class="attr">col</span>=<span class="string">"3"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">group</span> <span class="attr">string</span>=<span class="string">"cnwncsak"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">group</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 该组占据8列，即 n=12/3*2=8 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">group</span> <span class="attr">colspan</span>=<span class="string">"2"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">group</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">group</span>&gt;</span>...<span class="tag">&lt;/<span class="name">group</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">group</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
@@ -287,19 +293,19 @@
 </ul>
 <hr>
 <h2 id="语义化组件"><a href="#语义化组件" class="headerlink" title="语义化组件"></a>语义化组件</h2><blockquote>
-<p>语义用于连接到Odoo系统并与之交互</p>
+<p>语义用于连接到 Odoo 系统并与之交互</p>
 </blockquote>
 <h3 id="button"><a href="#button" class="headerlink" title="button"></a>button</h3><blockquote>
-<p>参照tree视图中的button，此外还可以指定如下属性</p>
+<p>参照 tree 视图中的 button，此外还可以指定如下属性</p>
 </blockquote>
 <ul>
-<li><p><code>special</code> 用于对话框中打开的form视图</p>
+<li><p><code>special</code> 用于对话框中打开的 form 视图</p>
 <ul>
 <li><code>save</code> 保存记录并关闭对话框</li>
 <li><code>cancel</code> 不保存，直接关闭对话框</li>
 </ul>
 </li>
-<li><p><code>confirm</code> 执行odoo调用之前，弹框提示确认信息</p>
+<li><p><code>confirm</code> 执行 odoo 调用之前，弹框提示确认信息</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">special</span>=<span class="string">"save"</span> <span class="attr">string</span>=<span class="string">"Save"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">special</span>=<span class="string">"cancel"</span> <span class="attr">string</span>=<span class="string">"Cancel"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 执行delete方法之前，弹出确认框，文字为 "是否确定删除？" --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"object"</span> <span class="attr">name</span>=<span class="string">"delete"</span> <span class="attr">string</span>=<span class="string">"删除"</span> <span class="attr">confirm</span>=<span class="string">"是否确定删除？"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
 </li>
@@ -308,10 +314,10 @@
 <p>渲染当前记录的单个字段(无特殊限制时可允许编辑)</p>
 </blockquote>
 <h4 id="name"><a href="#name" class="headerlink" title="name"></a>name</h4><blockquote>
-<p>字段名(必须)，对应python模型类中定义的字段名</p>
+<p>字段名(必须)，对应 python 模型类中定义的字段名</p>
 </blockquote>
 <h4 id="widget"><a href="#widget" class="headerlink" title="widget"></a>widget</h4><blockquote>
-<p>字段挂件（将字段以特定的方式展示），具体参考widget</p>
+<p>字段挂件（将字段以特定的方式展示），具体参考 widget</p>
 </blockquote>
 <h4 id="options"><a href="#options" class="headerlink" title="options"></a>options</h4><blockquote>
 <p>指定字段挂件(包括默认挂件)的配置项</p>
@@ -352,7 +358,7 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"department_id"</span> <span class="attr">required</span>=<span class="string">"1"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="nolabel"><a href="#nolabel" class="headerlink" title="nolabel"></a>nolabel</h4><blockquote>
-<p>不显示label标签<br>只作用于<code>group</code>的直接子元素</p>
+<p>不显示 label 标签<br>只作用于<code>group</code>的直接子元素</p>
 </blockquote>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"department_id"</span> <span class="attr">nolabel</span>=<span class="string">"1"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -362,7 +368,7 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">placeholder</span>=<span class="string">"请输入名称"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="help"><a href="#help" class="headerlink" title="help"></a>help</h4><blockquote>
-<p>鼠标悬停提示，目前base2已改为仅在debug模式生效</p>
+<p>鼠标悬停提示，目前 base2 已改为仅在 debug 模式生效</p>
 </blockquote>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">help</span>=<span class="string">"鼠标悬停"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -372,10 +378,9 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"data_file"</span> <span class="attr">filename</span>=<span class="string">"filename"</span> <span class="attr">placeholder</span>=<span class="string">"Choose a file to import..."</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"filename"</span> <span class="attr">invisible</span>=<span class="string">"1"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="password"><a href="#password" class="headerlink" title="password"></a>password</h4><blockquote>
-<p>将char类型的字段，以密码的形式展示</p>
+<p>将 char 类型的字段，以密码的形式展示</p>
 </blockquote>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">password</span>=<span class="string">"1"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
 
     </div>
 
