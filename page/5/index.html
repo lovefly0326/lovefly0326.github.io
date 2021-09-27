@@ -136,7 +136,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">15</span></a>
 
   </li>
   </ul>
@@ -182,7 +182,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/09/23/odoo12/%E8%A7%86%E5%9B%BE%E6%8C%82%E4%BB%B6.html" class="post-title-link" itemprop="url">odoo12/视图挂件</a>
+            <a href="/2021/09/23/odoo12/%E8%A7%86%E5%9B%BE%E6%8C%82%E4%BB%B6.html" class="post-title-link" itemprop="url">视图挂件</a>
         </h2>
 
         <div class="post-meta">
@@ -192,7 +192,23 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-09-23 08:04:09" itemprop="dateCreated datePublished" datetime="2021-09-23T08:04:09+08:00">2021-09-23</time>
+              <time title="创建时间：2021-09-23 08:05:00" itemprop="dateCreated datePublished" datetime="2021-09-23T08:05:00+08:00">2021-09-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-27 13:49:21" itemprop="dateModified" datetime="2021-09-27T13:49:21+08:00">2021-09-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/odoo12/" itemprop="url" rel="index"><span itemprop="name">odoo12</span></a>
+                </span>
             </span>
 
           
@@ -206,7 +222,65 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h1 id="odoo12-视图挂件"><a href="#odoo12-视图挂件" class="headerlink" title="odoo12 视图挂件"></a>odoo12 视图挂件</h1><h2 id="tree视图"><a href="#tree视图" class="headerlink" title="tree视图"></a>tree视图</h2><h3 id="export-quot-1-quot"><a href="#export-quot-1-quot" class="headerlink" title="export=&quot;1&quot;"></a><code>export=&quot;1&quot;</code></h3><blockquote>
+<p>导出详情，默认隐藏</p>
+</blockquote>
+<h3 id="direct-export-quot-0-quot"><a href="#direct-export-quot-0-quot" class="headerlink" title="direct_export=&quot;0&quot;"></a><code>direct_export=&quot;0&quot;</code></h3><blockquote>
+<p>直接导出，默认显示</p>
+</blockquote>
+<h3 id="editable"><a href="#editable" class="headerlink" title="editable"></a><code>editable</code></h3><blockquote>
+<p>可编辑的tree</p>
+</blockquote>
+<h3 id="向导"><a href="#向导" class="headerlink" title="向导"></a>向导</h3><ul>
+<li>菜单动作：context<ul>
+<li><code>hide_all_button</code> 隐藏所有向导按钮</li>
+<li><code>hideTree2</code> 隐藏向导按钮<br>向导动作：context</li>
+<li><code>change_color</code> 着重按钮</li>
+<li><code>on_tree=&#39;2&#39;</code> 隐藏向导按钮</li>
+</ul>
+</li>
+</ul>
+<h3 id="odtree"><a href="#odtree" class="headerlink" title="odtree"></a><code>odtree</code></h3><p><img data-src="/images/views/odtree.png" alt="odtree"></p>
+<h3 id="no-edit-no-open-39-1-39"><a href="#no-edit-no-open-39-1-39" class="headerlink" title="no_edit_no_open=&#39;1&#39;"></a><code>no_edit_no_open=&#39;1&#39;</code></h3><blockquote>
+<p>用于x2many，禁止行点</p>
+</blockquote>
+<h3 id="line-number-’1’"><a href="#line-number-’1’" class="headerlink" title="line_number=’1’"></a><code>line_number=’1’</code></h3><blockquote>
+<p>行号</p>
+</blockquote>
+<h3 id="自定义筛选field-filter"><a href="#自定义筛选field-filter" class="headerlink" title="自定义筛选field_filter"></a>自定义筛选<code>field_filter</code></h3><p><img data-src="/images/views/tree_filter1.png" alt="自定义筛选"><br><img data-src="/images/views/tree_filter.png" alt="自定义筛选"></p>
+<h3 id="fixed-col"><a href="#fixed-col" class="headerlink" title="fixed_col"></a><code>fixed_col</code></h3><blockquote>
+<p>固定列</p>
+</blockquote>
+<hr>
+<h2 id="form视图"><a href="#form视图" class="headerlink" title="form视图"></a>form视图</h2><h3 id="标记挂件-web-ribbon"><a href="#标记挂件-web-ribbon" class="headerlink" title="标记挂件 web_ribbon"></a>标记挂件 <code>web_ribbon</code></h3><p><img data-src="/images/views/web_ribbon1.png" alt="web_ribbon"><br><img data-src="/images/views/web_ribbon.png" alt="web_ribbon"></p>
+<h3 id="not-editable、not-deletable、no-copiable"><a href="#not-editable、not-deletable、no-copiable" class="headerlink" title="not_editable、not_deletable、no_copiable"></a><code>not_editable</code>、<code>not_deletable</code>、<code>no_copiable</code></h3><blockquote>
+<p>根据domain判定是否可编辑、删除、复制</p>
+</blockquote>
+<h3 id="form-field-click"><a href="#form-field-click" class="headerlink" title="form_field_click"></a><code>form_field_click</code></h3><blockquote>
+<p>字段点击事件<br><img data-src="/images/views/form_field_click.png" alt="form_field_click"></p>
+</blockquote>
+<h3 id="range-field、range-related-field"><a href="#range-field、range-related-field" class="headerlink" title="range_field、range_related_field"></a><code>range_field</code>、<code>range_related_field</code></h3><blockquote>
+<p>字段范围挂件<br><img data-src="/images/views/range_field1.png" alt="range_field"><br><img data-src="/images/views/range_field.png" alt="range_field"></p>
+</blockquote>
+<h3 id="form-view-initial-mode"><a href="#form-view-initial-mode" class="headerlink" title="form_view_initial_mode"></a><code>form_view_initial_mode</code></h3><blockquote>
+<p>控制form界面编辑/只读状态<br>可选值 edit/readonly</p>
+</blockquote>
+<h3 id="check-before-save、check-before-action"><a href="#check-before-save、check-before-action" class="headerlink" title="check_before_save、check_before_action"></a><code>check_before_save</code>、<code>check_before_action</code></h3><blockquote>
+<p>按钮执行前的校验逻辑<br>详细请参考 <code>按钮执行前校验.docx</code><br><img data-src="/images/views/check_before_save.png" alt="check_before_save"><br><img data-src="/images/views/check_before_action.png" alt="check_before_action"></p>
+</blockquote>
+<hr>
+<h2 id="kanban"><a href="#kanban" class="headerlink" title="kanban"></a>kanban</h2><ul>
+<li>看板点击事件<br><img data-src="/images/views/kanban_click_method.png" alt="kanban_click_method"></li>
+</ul>
+<hr>
+<h2 id="弹框"><a href="#弹框" class="headerlink" title="弹框"></a>弹框</h2><ul>
+<li>大小设置<ul>
+<li>context: { ‘dialog-size’: ‘small/large/super’ }</li>
+<li>context: { ‘width’: ‘80vw’, ‘height’: ‘70vh’ }</li>
+</ul>
+</li>
+</ul>
+
       
     </div>
 
@@ -256,7 +330,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-27 12:18:10" itemprop="dateModified" datetime="2021-09-27T12:18:10+08:00">2021-09-27</time>
+                <time title="修改时间：2021-09-27 13:18:07" itemprop="dateModified" datetime="2021-09-27T13:18:07+08:00">2021-09-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -279,7 +353,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="odoo12-字段挂件"><a href="#odoo12-字段挂件" class="headerlink" title="odoo12 字段挂件"></a>odoo12 字段挂件</h1><h2 id="integer-FieldInteger"><a href="#integer-FieldInteger" class="headerlink" title="integer (FieldInteger)"></a><code>integer</code> (FieldInteger)</h2><blockquote>
+          <h1 id="odoo12-原生字段挂件"><a href="#odoo12-原生字段挂件" class="headerlink" title="odoo12 原生字段挂件"></a>odoo12 原生字段挂件</h1><h2 id="integer-FieldInteger"><a href="#integer-FieldInteger" class="headerlink" title="integer (FieldInteger)"></a><code>integer</code> (FieldInteger)</h2><blockquote>
 <p>整型（integer）字段的默认字段类型<br><font color=orange>支持的字段类型</font>: <code>integer</code></p>
 </blockquote>
 <ul>
@@ -675,6 +749,132 @@
 </blockquote>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"attachment_ids"</span> <span class="attr">widget</span>=<span class="string">"many2many_binary"</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 可预览 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"attachment_ids"</span> <span class="attr">widget</span>=<span class="string">"many2many_binary_print"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 <p><img data-src="/images/fields/many2many_binary.png" alt="many2many_binary"></p>
+<hr>
+<hr>
+<h1 id="自定义挂件"><a href="#自定义挂件" class="headerlink" title="自定义挂件"></a>自定义挂件</h1><h2 id="many2one"><a href="#many2one" class="headerlink" title="many2one"></a><code>many2one</code></h2><ul>
+<li><p><code>widget=&quot;img_item&quot;</code> : many2one图标选择</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"many2one_value"</span> <span class="attr">widget</span>=<span class="string">"img_item"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img data-src="/images/fields/img_item.png" alt="img_item"></p>
+</li>
+<li><p><code>options=&quot;{&#39;select_all&#39;: 1}&quot;”</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"many2one_value"</span> <span class="attr">options</span>=<span class="string">"&#123;'select_all': 1&#125;"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>widget=&quot;o2m_unique&quot;</code>: 用于one2many中的many2one字段，使得one2many行数据不会重复</p>
+</li>
+<li><p><code>widget=&quot;only_create&quot;</code>: 点击many2one字段弹出创建框</p>
+</li>
+</ul>
+<h2 id="one2many"><a href="#one2many" class="headerlink" title="one2many"></a><code>one2many</code></h2><ul>
+<li><p><code>dy_sequence</code>: 字段默认序列<br><img data-src="/images/fields/dy_sequence.png" alt="默认序列"></p>
+</li>
+<li><p><code>fixed_col</code>: 固定列<br><img data-src="/images/fields/fixed_col.png" alt="固定列"></p>
+</li>
+<li><p><code>widget=&quot;multi_select_tree&quot;</code>: 明细行批量添加挂件<br><img data-src="/images/fields/multi_select_tree.png" alt="批量添加"></p>
+</li>
+<li><p><code>widget=&quot;one2many_form&quot;</code>: 以form形式新建行记录</p>
+</li>
+<li><p><code>not_creatable</code>、<code>not_editable</code>、<code>not_deletable</code> 行动态配置</p>
+</li>
+</ul>
+<h2 id="many2many"><a href="#many2many" class="headerlink" title="many2many"></a><code>many2many</code></h2><ul>
+<li><code>widget=&quot;many2many_picscroll&quot;</code> : many2many字段图片视频轮播</li>
+<li><code>widget=&quot;many2many_binary_print&quot;</code>: 文件预览</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.lovefly0326.com/2021/09/27/odoo12/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="love_fly">
+      <meta itemprop="description" content="个人学习笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="love_fly">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/27/odoo12/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.html" class="post-title-link" itemprop="url">开发规范</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-27 08:05:00 / 修改时间：12:46:04" itemprop="dateCreated datePublished" datetime="2021-09-27T08:05:00+08:00">2021-09-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/odoo12/" itemprop="url" rel="index"><span itemprop="name">odoo12</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="开发规范"><a href="#开发规范" class="headerlink" title="开发规范"></a>开发规范</h1><ul>
+<li>命名规范<blockquote>
+<p>模块名统一采用 <em><code>模块名.文件名</code></em>。文件名由具体功能决定</p>
+</blockquote>
+</li>
+</ul>
+<p><img data-src="/images/standard/module_name.png" alt="模块命名规范"></p>
+<ul>
+<li><p>源码继承</p>
+<blockquote>
+<p>文件结构与源码保持一致（主要针对dy_base），命名与源码保持一致（只更换模块名）</p>
+</blockquote>
+</li>
+<li><p>文件功能单一</p>
+<blockquote>
+<p>单个文件的功能尽量单一，尽量避免将多个功能揉在一个文件中  </p>
+</blockquote>
+</li>
+<li><p>文件根据类型放在相应的文件夹</p>
+<ul>
+<li>js ==&gt; js文件夹</li>
+<li>css ===&gt; css文件夹</li>
+<li>scss ===&gt; scss文件夹</li>
+<li>第三方资源 ===&gt; lib文件夹</li>
+</ul>
+</li>
+<li></li>
+</ul>
 
       
     </div>
@@ -761,7 +961,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
