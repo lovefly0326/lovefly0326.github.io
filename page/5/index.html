@@ -199,7 +199,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-27 13:18:07" itemprop="dateModified" datetime="2021-09-27T13:18:07+08:00">2021-09-27</time>
+                <time title="修改时间：2021-09-27 16:39:11" itemprop="dateModified" datetime="2021-09-27T16:39:11+08:00">2021-09-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -595,9 +595,22 @@
 </ul>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"currency_id"</span> <span class="attr">options</span>=<span class="string">"&#123;'no_create': True, 'no_open': True&#125;"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
-<hr>
 </li>
 </ul>
+<h2 id="m2o-table-m2o-table"><a href="#m2o-table-m2o-table" class="headerlink" title="m2o_table (m2o_table)"></a><code>m2o_table</code> (m2o_table)</h2><blockquote>
+<p>m2o下拉菜单table化组件</p>
+</blockquote>
+<ul>
+<li><p>context</p>
+<ul>
+<li><code>table_fields</code>: 表格列字段</li>
+<li><code>search_fields</code>: 模糊搜索匹配的字段</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"product_id"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">widget</span>=<span class="string">"m2o_table"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">context</span>=<span class="string">"&#123;'table_fields':['default_code', 'name', 'specification','product_model','categ_id','uom_id','manufacturer_id','standard_price'],</span></span></span><br><span class="line"><span class="tag"><span class="string">              'search_fields':['name', 'default_code']&#125;"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img data-src="/images/fields/m2o_table.png" alt="m2o_table"></p>
+</li>
+</ul>
+<hr>
 <h2 id="many2many-checkboxes-FieldMany2ManyCheckBoxes"><a href="#many2many-checkboxes-FieldMany2ManyCheckBoxes" class="headerlink" title="many2many_checkboxes  (FieldMany2ManyCheckBoxes)"></a><code>many2many_checkboxes</code>  (FieldMany2ManyCheckBoxes)</h2><blockquote>
 <p>复选框列表<br><font color=orange>支持的字段类型</font>: <em><code>many2many</code></em></p>
 </blockquote>
