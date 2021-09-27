@@ -168,95 +168,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.lovefly0326.com/2021/03/04/odoo12/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%95%8C%E9%9D%A2.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="love_fly">
-      <meta itemprop="description" content="个人学习笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="love_fly">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/04/odoo12/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%95%8C%E9%9D%A2.html" class="post-title-link" itemprop="url">odoo自定义界面</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-03-04 17:05:00" itemprop="dateCreated datePublished" datetime="2021-03-04T17:05:00+08:00">2021-03-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-27 08:44:02" itemprop="dateModified" datetime="2021-09-27T08:44:02+08:00">2021-09-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/odoo12/" itemprop="url" rel="index"><span itemprop="name">odoo12</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="自定义界面"><a href="#自定义界面" class="headerlink" title="自定义界面"></a>自定义界面</h1><blockquote>
-<p>基于<code>ir.actions.client</code></p>
-</blockquote>
-<h2 id="创建界面-action-的步骤"><a href="#创建界面-action-的步骤" class="headerlink" title="创建界面 action 的步骤"></a>创建界面 action 的步骤</h2><h3 id="定义一个-client-action"><a href="#定义一个-client-action" class="headerlink" title="定义一个 client action"></a>定义一个 client action</h3><ul>
-<li>由 AbstractAction 继承而来</li>
-<li>如果需要控制面板，可以混入<code>ControlPanelMixin</code>，<strong>不需要则不要混入</strong></li>
-<li>如果混入了控制面板，可以通过<code>update_control_panel</code> 与控制面板交互</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ControlPanelMixin = <span class="built_in">require</span>(<span class="string">'web.ControlPanelMixin'</span>);</span><br><span class="line"><span class="keyword">var</span> AbstractAction = <span class="built_in">require</span>(<span class="string">'web.AbstractAction'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> HomePage = AbstractAction.extend(ControlPanelMixin, &#123;</span><br><span class="line">  <span class="comment">// 以下两个属性，在下文中介绍</span></span><br><span class="line">  template: <span class="string">'dy_base_hpage.home_page'</span>, <span class="comment">// 模板名称</span></span><br><span class="line">  xmlDependencies: [<span class="string">'/dy_base_hpage/static/src/xml/lazy_load/home_page.xml'</span>], <span class="comment">// 模板懒加载</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/03/04/odoo12/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%95%8C%E9%9D%A2.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.lovefly0326.com/2021/03/04/odoo12/%E5%B8%B8%E7%94%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -327,6 +238,95 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/03/04/odoo12/%E5%B8%B8%E7%94%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.lovefly0326.com/2021/03/04/odoo12/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%95%8C%E9%9D%A2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="love_fly">
+      <meta itemprop="description" content="个人学习笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="love_fly">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/04/odoo12/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%95%8C%E9%9D%A2.html" class="post-title-link" itemprop="url">odoo自定义界面</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-04 17:05:00" itemprop="dateCreated datePublished" datetime="2021-03-04T17:05:00+08:00">2021-03-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-27 08:44:02" itemprop="dateModified" datetime="2021-09-27T08:44:02+08:00">2021-09-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/odoo12/" itemprop="url" rel="index"><span itemprop="name">odoo12</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="自定义界面"><a href="#自定义界面" class="headerlink" title="自定义界面"></a>自定义界面</h1><blockquote>
+<p>基于<code>ir.actions.client</code></p>
+</blockquote>
+<h2 id="创建界面-action-的步骤"><a href="#创建界面-action-的步骤" class="headerlink" title="创建界面 action 的步骤"></a>创建界面 action 的步骤</h2><h3 id="定义一个-client-action"><a href="#定义一个-client-action" class="headerlink" title="定义一个 client action"></a>定义一个 client action</h3><ul>
+<li>由 AbstractAction 继承而来</li>
+<li>如果需要控制面板，可以混入<code>ControlPanelMixin</code>，<strong>不需要则不要混入</strong></li>
+<li>如果混入了控制面板，可以通过<code>update_control_panel</code> 与控制面板交互</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ControlPanelMixin = <span class="built_in">require</span>(<span class="string">'web.ControlPanelMixin'</span>);</span><br><span class="line"><span class="keyword">var</span> AbstractAction = <span class="built_in">require</span>(<span class="string">'web.AbstractAction'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> HomePage = AbstractAction.extend(ControlPanelMixin, &#123;</span><br><span class="line">  <span class="comment">// 以下两个属性，在下文中介绍</span></span><br><span class="line">  template: <span class="string">'dy_base_hpage.home_page'</span>, <span class="comment">// 模板名称</span></span><br><span class="line">  xmlDependencies: [<span class="string">'/dy_base_hpage/static/src/xml/lazy_load/home_page.xml'</span>], <span class="comment">// 模板懒加载</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/04/odoo12/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%95%8C%E9%9D%A2.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

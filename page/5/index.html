@@ -199,7 +199,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-27 16:39:11" itemprop="dateModified" datetime="2021-09-27T16:39:11+08:00">2021-09-27</time>
+                <time title="修改时间：2021-09-27 16:42:13" itemprop="dateModified" datetime="2021-09-27T16:42:13+08:00">2021-09-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -590,7 +590,7 @@
 <li><code>no_quick_create</code>: 禁止快速创建记录（多余？）</li>
 <li><code>no_create_edit</code>: 不允许创建和编辑</li>
 <li><code>create_name_field</code>: 创建记录时，输入框显示的字段，默认为name</li>
-<li><code>always_reload</code>: 执行额外的<code>name_get</code>获取name值。常用与name_get被重写的情况？？？。默认为false。</li>
+<li><code>always_reload</code>: 执行额外的<code>name_get</code>获取name值。常用于name_get被重写的情况？？？。默认为false。</li>
 <li><code>no_open</code>: readonly模式下，不会重定向到对应记录</li>
 </ul>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"currency_id"</span> <span class="attr">options</span>=<span class="string">"&#123;'no_create': True, 'no_open': True&#125;"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
@@ -606,7 +606,7 @@
 <li><code>table_fields</code>: 表格列字段</li>
 <li><code>search_fields</code>: 模糊搜索匹配的字段</li>
 </ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"product_id"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">widget</span>=<span class="string">"m2o_table"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">context</span>=<span class="string">"&#123;'table_fields':['default_code', 'name', 'specification','product_model','categ_id','uom_id','manufacturer_id','standard_price'],</span></span></span><br><span class="line"><span class="tag"><span class="string">              'search_fields':['name', 'default_code']&#125;"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"product_id"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">widget</span>=<span class="string">"m2o_table"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">context</span>=<span class="string">"&#123;'table_fields':['default_code', 'name', 'specification','product_model','categ_id','uom_id','manufacturer_id','standard_price'],</span></span></span><br><span class="line"><span class="tag"><span class="string">              'search_fields':['name', 'default_code']&#125;"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 <p><img data-src="/images/fields/m2o_table.png" alt="m2o_table"></p>
 </li>
 </ul>
