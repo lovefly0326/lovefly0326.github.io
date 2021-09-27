@@ -29,7 +29,7 @@
 <meta property="og:description" content="Treetree 视图属性editable tree 视图可直接编辑   top 新建记录在列表顶部  bottom 新建记录在列表底部 1&lt;tree editable&#x3D;&quot;bottom&quot;&gt;...&lt;&#x2F;tree&gt;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-04T09:05:00.000Z">
-<meta property="article:modified_time" content="2021-03-16T00:52:24.875Z">
+<meta property="article:modified_time" content="2021-09-23T05:43:52.639Z">
 <meta property="article:author" content="love_fly">
 <meta property="article:tag" content="odoo12">
 <meta name="twitter:card" content="summary">
@@ -131,7 +131,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">11</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a>
 
   </li>
   </ul>
@@ -194,7 +194,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-16 08:52:24" itemprop="dateModified" datetime="2021-03-16T08:52:24+08:00">2021-03-16</time>
+                <time title="修改时间：2021-09-23 13:43:52" itemprop="dateModified" datetime="2021-09-23T13:43:52+08:00">2021-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -266,7 +266,7 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 默认一页80条 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tree</span> <span class="attr">limit</span>=<span class="string">"80"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">tree</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="tree-视图可包含的子元素"><a href="#tree-视图可包含的子元素" class="headerlink" title="tree 视图可包含的子元素"></a>tree 视图可包含的子元素</h2><h3 id="button"><a href="#button" class="headerlink" title="button"></a>button</h3><blockquote>
+<h2 id="tree-视图可包含的子元素"><a href="#tree-视图可包含的子元素" class="headerlink" title="tree 视图可包含的子元素"></a>tree 视图可包含的子元素</h2><h3 id="button"><a href="#button" class="headerlink" title="button"></a><strong>button</strong></h3><blockquote>
 <p>在<code>tree</code>视图列表单元格中显示按钮，执行特定的动作</p>
 </blockquote>
 <h4 id="icon"><a href="#icon" class="headerlink" title="icon"></a>icon</h4><blockquote>
@@ -307,7 +307,7 @@
 <h4 id="states"><a href="#states" class="headerlink" title="states"></a>states</h4><ul>
 <li><p><code>invisible</code> 的简写，值列表通过逗号分隔。<mark>要求模型中有<code>state</code> 字段，并且在视图中使用该字段。</mark></p>
 </li>
-<li><p><code>state</code> 字段的值如果在<code>states</code>值列表中，则隐藏 button</p>
+<li><p><code>state</code> 字段的值如果不在<code>states</code>值列表中，则隐藏 button</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">state = fields.Selection([(<span class="string">'open'</span>, <span class="string">'To Do'</span>), (<span class="string">'processing'</span>, <span class="string">'Processing'</span>), (<span class="string">'done'</span>, <span class="string">'Done'</span>)], string=<span class="string">'Status'</span>, default=<span class="string">'open'</span>, required=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">tree</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"state"</span> /&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- states的方式 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"object"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">name</span>=<span class="string">"action_open"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">string</span>=<span class="string">"Todo"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">icon</span>=<span class="string">"fa-exchange"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">states</span>=<span class="string">"processing,done"</span> /&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 同invisible的方式 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"object"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">name</span>=<span class="string">"action_open"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">string</span>=<span class="string">"Todo"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">icon</span>=<span class="string">"fa-exchange"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">attrs</span>=<span class="string">"&#123;'invisible': [('state', 'in', ['processing', 'done'])]&#125;"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tree</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -322,7 +322,7 @@
 <p>样式类，可自定义类，也可以直接使用<code>bootstrap</code> 类</p>
 </blockquote>
 <hr>
-<h3 id="field"><a href="#field" class="headerlink" title="field"></a>field</h3><blockquote>
+<h3 id="field"><a href="#field" class="headerlink" title="field"></a><strong>field</strong></h3><blockquote>
 <p><code>tree</code>视图每列显示的字段</p>
 </blockquote>
 <h4 id="name-1"><a href="#name-1" class="headerlink" title="name"></a>name</h4><blockquote>
@@ -361,14 +361,14 @@
 <ul>
 <li><p><code>invisible</code> 当前记录的当前字段列是否隐藏（不会隐藏列）</p>
 </li>
-<li><p><code>column_invisible</code> 常用于根据父对象隐藏列</p>
+<li><p><code>column_invisible</code> 常用于根据父对象隐藏列(<code>多用于X2Many字段</code>)</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"lookup_value_ids"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tree</span> <span class="attr">string</span>=<span class="string">"Values"</span> <span class="attr">editable</span>=<span class="string">"bottom"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 只隐藏当前记录的值 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"code"</span> <span class="attr">attrs</span>=<span class="string">"&#123;'invisible': [('active_flag', '=', True)]&#125;"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 隐藏name对应的列 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">attrs</span>=<span class="string">"&#123;'column_invisible': [('parent.code', '=', 'wkf_activity_type')]&#125;"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"active_flag"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tree</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
 <hr>
-<h3 id="lt-control-gt"><a href="#lt-control-gt" class="headerlink" title="&lt;control&gt;"></a>&lt;control&gt;</h3><blockquote>
-<p>为当前视图定义自定义控件(one2many)。不支持任何属性，可以有子级(<code>&lt;create&gt;</code> )。<br>不自定义 control 时，默认值是<code>Add a line</code>(<code>添加明细行</code>)<br><strong>只会在编辑状态且 create=”1”(<em>默认就为 1</em>)的情况下生效</strong></p>
+<h3 id="lt-control-gt"><a href="#lt-control-gt" class="headerlink" title="&lt;control&gt;"></a><strong>&lt;control&gt;</strong></h3><blockquote>
+<p>为当前视图定义自定义控件(one2many)。不支持任何属性，可以有子级(<code>&lt;create&gt;</code> )<br>不自定义 control 时，默认值是<code>Add a line</code>(<code>添加明细行</code>)<br><strong>只会在编辑状态且 create=”1”(<em>默认就为 1</em>)的情况下生效</strong></p>
 </blockquote>
 <h4 id="lt-create-gt"><a href="#lt-create-gt" class="headerlink" title="&lt;create&gt;"></a>&lt;create&gt;</h4><blockquote>
 <p>添加按钮以在当前列表中创建新元素</p>
@@ -377,7 +377,7 @@
 <li><code>string</code> 按钮名称</li>
 <li><code>context</code> 检索新记录的默认值时，将合并到现有上下文中。例如覆盖默认值</li>
 </ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 以下示例会添加三个自定义按钮，替换默认的 Add a line --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"lookup_value_ids"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tree</span> <span class="attr">string</span>=<span class="string">"Values"</span> <span class="attr">create</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">control</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">create</span> <span class="attr">string</span>=<span class="string">"Add a product"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">create</span> <span class="attr">string</span>=<span class="string">"Add a section"</span> <span class="attr">context</span>=<span class="string">"&#123;'default_display_type': 'line_section'&#125;"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">create</span> <span class="attr">string</span>=<span class="string">"Add a note"</span> <span class="attr">context</span>=<span class="string">"&#123;'default_display_type': 'line_note'&#125;"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">control</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tree</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 以下示例会添加三个自定义按钮，替换默认的 Add a line --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"lookup_value_ids"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tree</span> <span class="attr">string</span>=<span class="string">"Values"</span> <span class="attr">create</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">control</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">create</span> <span class="attr">string</span>=<span class="string">"添加明细行1"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">create</span> <span class="attr">string</span>=<span class="string">"添加明细行2"</span> <span class="attr">context</span>=<span class="string">"&#123;'default_display_type': 'line_section'&#125;"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">create</span> <span class="attr">string</span>=<span class="string">"添加明细行3"</span> <span class="attr">context</span>=<span class="string">"&#123;'default_display_type': 'line_note'&#125;"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">control</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tree</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -397,12 +397,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/03/04/odoo12/%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD.html" rel="prev" title="odoo常用功能">
-      <i class="fa fa-chevron-left"></i> odoo常用功能
+    <a href="/2021/03/04/odoo12/form%E8%A7%86%E5%9B%BE.html" rel="prev" title="odoo form视图">
+      <i class="fa fa-chevron-left"></i> odoo form视图
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/03/04/odoo12/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%95%8C%E9%9D%A2.html" rel="next" title="odoo自定义界面">
-      odoo自定义界面 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/03/04/odoo12/Qweb.html" rel="next" title="odoo Qweb">
+      odoo Qweb <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -478,7 +478,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

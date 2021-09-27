@@ -29,7 +29,7 @@
 <meta property="og:description" content="Qweb QWeb 是 Odoo 使用的主要模板引擎，XML 表述，用于生成 HTML 片段和页面。模板指令以t-开头占位标签&lt;t&gt;，不会渲染任何元素  12345678910111213&lt;t t-if&#x3D;&quot;condition&quot;&gt;  &lt;p&gt;Test&lt;&#x2F;p&gt;&lt;&#x2F;t&gt;&lt;!-- condition为true渲染为 --&gt;&lt;p&amp;g">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-04T09:05:00.000Z">
-<meta property="article:modified_time" content="2021-03-11T10:27:31.139Z">
+<meta property="article:modified_time" content="2021-09-22T06:58:37.763Z">
 <meta property="article:author" content="love_fly">
 <meta property="article:tag" content="odoo12">
 <meta name="twitter:card" content="summary">
@@ -131,7 +131,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">11</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a>
 
   </li>
   </ul>
@@ -194,7 +194,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-11 18:27:31" itemprop="dateModified" datetime="2021-03-11T18:27:31+08:00">2021-03-11</time>
+                <time title="修改时间：2021-09-22 14:58:37" itemprop="dateModified" datetime="2021-09-22T14:58:37+08:00">2021-09-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -286,7 +286,7 @@
 </tr>
 <tr>
 <td><em>$as</em>_first</td>
-<td>布尔值<br />当前项是否是迭代的<strong>第一项</strong>（相当于 <em>$as</em>_index + 1 == <em>$as</em>_size）</td>
+<td>布尔值<br />当前项是否是迭代的<strong>第一项</strong>（相当于 <em>$as</em>_index == 0）</td>
 </tr>
 <tr>
 <td><em>$as</em>_last</td>
@@ -341,7 +341,7 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-set</span>=<span class="string">"foo"</span> <span class="attr">t-value</span>=<span class="string">"2 + 1"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-esc</span>=<span class="string">"foo"</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 渲染为3 --&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>没有<code>t-value</code>，节点的内容即为变量的值</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-set</span>=<span class="string">"foo"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>ok<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-esc</span>=<span class="string">"foo"</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 渲染为 &lt;p&gt;ok&lt;/p&gt; --&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-set</span>=<span class="string">"foo"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>ok<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-esc</span>=<span class="string">"foo"</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 渲染为 &lt;p&gt;ok&lt;/p&gt;(会转义) --&gt;</span></span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
@@ -350,7 +350,7 @@
 <li><p>调用子模板，并传入变量</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 子模板 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-name</span>=<span class="string">"sub-template"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-esc</span>=<span class="string">"var"</span>/&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 调用子模板并定义一个变量 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-call</span>=<span class="string">"sub-template"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">t</span> <span class="attr">t-set</span>=<span class="string">"var"</span> <span class="attr">t-value</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 渲染为 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>call 指令的主体可以是任意的（不仅仅是 set 指令），其将在被调用模板中作为一个<code>0</code>的变量呈现</p>
+<li><p>call 指令的主体可以是任意复杂的（不仅仅是 set 指令），其将在被调用模板中作为一个<code>0</code>的变量呈现</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 子模板 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-name</span>=<span class="string">"sub-template"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    This template was called with content:</span><br><span class="line">    <span class="tag">&lt;<span class="name">t</span> <span class="attr">t-raw</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 调用子模板，并定义主体内容 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-call</span>=<span class="string">"other-template"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">em</span>&gt;</span>content<span class="tag">&lt;/<span class="name">em</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 渲染为 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  This template was called with content:</span><br><span class="line">  <span class="tag">&lt;<span class="name">em</span>&gt;</span>content<span class="tag">&lt;/<span class="name">em</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 </li>
@@ -394,7 +394,7 @@
 </tr>
 <tr>
 <td><code>replace</code></td>
-<td>替换当前节点包括子节点，等同于 jquery 的 <code>replaceWidth()</code></td>
+<td>替换当前节点包括子节点，等同于 jquery 的 <code>replaceWith()</code></td>
 </tr>
 <tr>
 <td><code>attributes</code></td>
@@ -449,12 +449,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/11/12/water-mark.html" rel="prev" title="网页水印效果实现">
-      <i class="fa fa-chevron-left"></i> 网页水印效果实现
+    <a href="/2021/03/04/odoo12/tree%E8%A7%86%E5%9B%BE.html" rel="prev" title="odoo Tree">
+      <i class="fa fa-chevron-left"></i> odoo Tree
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/03/04/odoo12/form%E8%A7%86%E5%9B%BE.html" rel="next" title="odoo form视图">
-      odoo form视图 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/09/22/odoo12/%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95.html" rel="next" title="odoo 前端常用方法">
+      odoo 前端常用方法 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -530,7 +530,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

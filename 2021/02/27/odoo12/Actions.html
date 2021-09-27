@@ -21,22 +21,27 @@
     var CONFIG = {"hostname":"blog.lovefly0326.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="应用场景 为网页添加水印，多用于内部网页或文档的防泄密操作  具体实现 动态创建 canvas 画布，填充水印文本，设置需要的样式 将 canvas 画布的内容导出为 base64 图片 动态创建或事先定义好水印的容器 dom 元素，然后将 base64 图片绑定为该 dom 的背景图片">
+  <meta name="description" content="个人学习笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网页水印效果实现">
-<meta property="og:url" content="http://blog.lovefly0326.com/2020/11/12/water-mark.html">
+<meta property="og:title" content="odoo12&#x2F;Actions">
+<meta property="og:url" content="http://blog.lovefly0326.com/2021/02/27/odoo12/Actions.html">
 <meta property="og:site_name" content="love_fly">
-<meta property="og:description" content="应用场景 为网页添加水印，多用于内部网页或文档的防泄密操作  具体实现 动态创建 canvas 画布，填充水印文本，设置需要的样式 将 canvas 画布的内容导出为 base64 图片 动态创建或事先定义好水印的容器 dom 元素，然后将 base64 图片绑定为该 dom 的背景图片">
+<meta property="og:description" content="个人学习笔记">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://blog.lovefly0326.com/images/watermark.png">
-<meta property="article:published_time" content="2020-11-12T03:15:43.000Z">
-<meta property="article:modified_time" content="2021-03-04T09:39:50.317Z">
+<meta property="article:published_time" content="2021-02-27T06:54:50.606Z">
+<meta property="article:modified_time" content="2021-09-27T00:44:20.739Z">
 <meta property="article:author" content="love_fly">
-<meta property="article:tag" content="canvas">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content=" html">
+<meta property="article:tag" content=" css">
+<meta property="article:tag" content=" vue">
+<meta property="article:tag" content=" react">
+<meta property="article:tag" content=" nginx">
+<meta property="article:tag" content=" docker">
+<meta property="article:tag" content=" odoo">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://blog.lovefly0326.com/images/watermark.png">
 
-<link rel="canonical" href="http://blog.lovefly0326.com/2020/11/12/water-mark.html">
+<link rel="canonical" href="http://blog.lovefly0326.com/2021/02/27/odoo12/Actions.html">
 
 
 <script id="page-configurations">
@@ -49,7 +54,7 @@
   };
 </script>
 
-  <title>网页水印效果实现 | love_fly</title>
+  <title>odoo12/Actions | love_fly</title>
   
 
 
@@ -166,7 +171,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://blog.lovefly0326.com/2020/11/12/water-mark.html">
+    <link itemprop="mainEntityOfPage" href="http://blog.lovefly0326.com/2021/02/27/odoo12/Actions.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
@@ -179,7 +184,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          网页水印效果实现
+          odoo12/Actions
         </h1>
 
         <div class="post-meta">
@@ -189,24 +194,15 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-11-12 11:15:43" itemprop="dateCreated datePublished" datetime="2020-11-12T11:15:43+08:00">2020-11-12</time>
+              <time title="创建时间：2021-02-27 14:54:50" itemprop="dateCreated datePublished" datetime="2021-02-27T14:54:50+08:00">2021-02-27</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-04 17:39:50" itemprop="dateModified" datetime="2021-03-04T17:39:50+08:00">2021-03-04</time>
+                <time title="修改时间：2021-09-27 08:44:20" itemprop="dateModified" datetime="2021-09-27T08:44:20+08:00">2021-09-27</time>
               </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -226,26 +222,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <!-- @format -->
-
-<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><blockquote>
-<p>为网页添加水印，多用于内部网页或文档的防泄密操作</p>
-</blockquote>
-<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><ul>
-<li>动态创建 canvas 画布，填充水印文本，设置需要的样式</li>
-<li>将 canvas 画布的内容导出为 base64 图片</li>
-<li>动态创建或事先定义好水印的容器 dom 元素，然后将 base64 图片绑定为该 dom 的背景图片</li>
-</ul>
-<a id="more"></a>
-
-<h3 id="html"><a href="#html" class="headerlink" title="html"></a>html</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"watermark"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="css"><a href="#css" class="headerlink" title="css"></a>css</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#watermark</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100vw</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100vh</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个画布, 用于生成水印背景图片</span></span><br><span class="line"><span class="keyword">const</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">"canvas"</span>);</span><br><span class="line"><span class="comment">// 设置画布的宽高</span></span><br><span class="line">canvas.width = <span class="number">200</span>;</span><br><span class="line">canvas.height = <span class="number">150</span>;</span><br><span class="line"><span class="keyword">const</span> ctx = canvas.getContext(<span class="string">"2d"</span>);</span><br><span class="line"><span class="comment">// 设置旋转角度</span></span><br><span class="line">ctx.rotate((<span class="number">-20</span> * <span class="built_in">Math</span>.PI) / <span class="number">180</span>);</span><br><span class="line"><span class="comment">// 字号、字体</span></span><br><span class="line">ctx.font = <span class="string">"16px Vedana"</span>;</span><br><span class="line"><span class="comment">// 填充色</span></span><br><span class="line">ctx.fillStyle = <span class="string">"rgba(200, 200, 200, 0.5)"</span>;</span><br><span class="line"><span class="comment">// 对齐方式</span></span><br><span class="line">ctx.textAlign = <span class="string">"left"</span>;</span><br><span class="line"><span class="comment">// 文本基线</span></span><br><span class="line">ctx.textBaseline = <span class="string">"middle"</span>;</span><br><span class="line"><span class="comment">// 填充文本</span></span><br><span class="line">ctx.fillText(<span class="keyword">this</span>.text, canvas.width / <span class="number">8</span>, canvas.height / <span class="number">2</span>);</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"watermark"</span>).style.background = <span class="string">`url(<span class="subst">$&#123;canvas.toDataURL(</span></span></span><br><span class="line"><span class="string"><span class="subst">  <span class="string">"image/png"</span></span></span></span><br><span class="line"><span class="string"><span class="subst">)&#125;</span>) left top repeat`</span>;</span><br></pre></td></tr></table></figure>
-
-<h2 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h2><p><img data-src="/images/watermark.png" alt="水印效果图"></p>
-
+        
     </div>
 
     
@@ -253,10 +230,6 @@
     
 
       <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/canvas/" rel="tag"><i class="fa fa-tag"></i> canvas</a>
-          </div>
 
         
 
@@ -264,12 +237,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/09/13/iframe.html" rel="prev" title="iframe 通信">
-      <i class="fa fa-chevron-left"></i> iframe 通信
+    <a href="/2020/11/12/water-mark.html" rel="prev" title="网页水印效果实现">
+      <i class="fa fa-chevron-left"></i> 网页水印效果实现
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/02/27/odoo12/Actions.html" rel="next" title="odoo12/Actions">
-      odoo12/Actions <i class="fa fa-chevron-right"></i>
+    <a href="/2021/03/04/odoo12/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%95%8C%E9%9D%A2.html" rel="next" title="odoo自定义界面">
+      odoo自定义界面 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -329,7 +302,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#应用场景"><span class="nav-number">1.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体实现"><span class="nav-number">2.</span> <span class="nav-text">具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#html"><span class="nav-number">2.1.</span> <span class="nav-text">html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css"><span class="nav-number">2.2.</span> <span class="nav-text">css</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js"><span class="nav-number">2.3.</span> <span class="nav-text">js</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果展示"><span class="nav-number">3.</span> <span class="nav-text">效果展示</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
