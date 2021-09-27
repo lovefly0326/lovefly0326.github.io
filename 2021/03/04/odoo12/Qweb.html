@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpeg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpeg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.lovefly0326.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Qweb QWeb 是 Odoo 使用的主要模板引擎，XML 表述，用于生成 HTML 片段和页面。模板指令以t-开头占位标签&lt;t&gt;，不会渲染任何元素  12345678910111213&lt;t t-if&#x3D;&quot;condition&quot;&gt;  &lt;p&gt;Test&lt;&#x2F;p&gt;&lt;&#x2F;t&gt;&lt;!-- condition为true渲染为 --&gt;&lt;p&amp;g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="odoo Qweb">
+<meta property="og:url" content="http://blog.lovefly0326.com/2021/03/04/odoo12/Qweb.html">
+<meta property="og:site_name" content="love_fly">
+<meta property="og:description" content="Qweb QWeb 是 Odoo 使用的主要模板引擎，XML 表述，用于生成 HTML 片段和页面。模板指令以t-开头占位标签&lt;t&gt;，不会渲染任何元素  12345678910111213&lt;t t-if&#x3D;&quot;condition&quot;&gt;  &lt;p&gt;Test&lt;&#x2F;p&gt;&lt;&#x2F;t&gt;&lt;!-- condition为true渲染为 --&gt;&lt;p&amp;g">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-04T09:05:00.000Z">
+<meta property="article:modified_time" content="2021-09-22T06:58:37.763Z">
+<meta property="article:author" content="love_fly">
+<meta property="article:tag" content="odoo12">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://blog.lovefly0326.com/2021/03/04/odoo12/Qweb.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>odoo Qweb | love_fly</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">love_fly</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.lovefly0326.com/2021/03/04/odoo12/Qweb.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="love_fly">
+      <meta itemprop="description" content="个人学习笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="love_fly">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          odoo Qweb
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-04 17:05:00" itemprop="dateCreated datePublished" datetime="2021-03-04T17:05:00+08:00">2021-03-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-22 14:58:37" itemprop="dateModified" datetime="2021-09-22T14:58:37+08:00">2021-09-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/odoo12/" itemprop="url" rel="index"><span itemprop="name">odoo12</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Qweb"><a href="#Qweb" class="headerlink" title="Qweb"></a>Qweb</h1><blockquote>
+<p>QWeb 是 Odoo 使用的主要模板引擎，XML 表述，用于生成 HTML 片段和页面。<br>模板指令以<code>t-</code>开头<br>占位标签<code>&lt;t&gt;</code>，不会渲染任何元素</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-if</span>=<span class="string">"condition"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Test<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- condition为true渲染为 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Test<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">t-if</span>=<span class="string">"condition"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Test<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- condition为true渲染为 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Test<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h2 id="qweb-常用指令"><a href="#qweb-常用指令" class="headerlink" title="qweb 常用指令"></a>qweb 常用指令</h2><h3 id="模板声明指令"><a href="#模板声明指令" class="headerlink" title="模板声明指令"></a>模板声明指令</h3><h4 id="t-name"><a href="#t-name" class="headerlink" title="t-name"></a>t-name</h4><blockquote>
+<p>定义模板，置于顶层</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-name</span>=<span class="string">"custom-template"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数据输出指令"><a href="#数据输出指令" class="headerlink" title="数据输出指令"></a>数据输出指令</h3><h4 id="t-esc"><a href="#t-esc" class="headerlink" title="t-esc"></a>t-esc</h4><blockquote>
+<p>渲染转义后的值，防止 xss</p>
+</blockquote>
+<h4 id="t-raw"><a href="#t-raw" class="headerlink" title="t-raw"></a>t-raw</h4><blockquote>
+<p>不转义，渲染数据库中的原始值，不确定源数据安全性的情况下，不建议使用</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-set</span>=<span class="string">"foo"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="actionscript">alert(<span class="string">'handsome boy'</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-esc</span>=<span class="string">"foo"</span>/&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 会转义，渲染为 &amp;lt;script&amp;gt;alert('handsome boy')&amp;lt;/script&amp;gt; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-raw</span>=<span class="string">"foo"</span>/&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 会执行脚本弹出提醒框，容易被xss，因此只应该作用域确定安全的数据源 --&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="条件指令"><a href="#条件指令" class="headerlink" title="条件指令"></a>条件指令</h3><ul>
+<li>t-if</li>
+<li>t-elif</li>
+<li>t-else</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">t-if</span>=<span class="string">"user.birthday == today()"</span>&gt;</span>Happy birthday!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">t-elif</span>=<span class="string">"user.login == 'root'"</span>&gt;</span>Welcome master!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">t-else</span>=<span class="string">""</span>&gt;</span>Welcome!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="循环指令"><a href="#循环指令" class="headerlink" title="循环指令"></a>循环指令</h3><blockquote>
+<p>使用<code>t-foreach</code> 接收要迭代的集合（列表、对象或整数），<code>t-as</code>提供当前项的名称</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 写法一 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-foreach</span>=<span class="string">"[1, 2, 3]"</span> <span class="attr">t-as</span>=<span class="string">"i"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-esc</span>=<span class="string">"i"</span>/&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 写法二 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">t-foreach</span>=<span class="string">"[1, 2, 3]"</span> <span class="attr">t-as</span>=<span class="string">"i"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">t</span> <span class="attr">t-esc</span>=<span class="string">"i"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 都会渲染为 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>2<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>3<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>以下列举了循环常用的变量，<font color='orange'> 注意：<code>$as</code>将指代传递给 t-as 的名称</font></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>$as</em>_all</td>
+<td>正在迭代的集合</td>
+</tr>
+<tr>
+<td><em>$as</em>_value</td>
+<td>对于列表和整数，该值与<code>$as</code>相同<br />对于对象(字典)，<em>$as</em>代表键，<code>$as_value</code>代表值</td>
+</tr>
+<tr>
+<td><em>$as</em>_index</td>
+<td>索引值（从 0 开始）</td>
+</tr>
+<tr>
+<td><em>$as</em>_size</td>
+<td>集合的大小（列表有效）</td>
+</tr>
+<tr>
+<td><em>$as</em>_first</td>
+<td>布尔值<br />当前项是否是迭代的<strong>第一项</strong>（相当于 <em>$as</em>_index == 0）</td>
+</tr>
+<tr>
+<td><em>$as</em>_last</td>
+<td>布尔值<br />当前项是否是迭代的<strong>最后一项</strong>（相当于 <em>$as</em>_index + 1 == <em>$as</em>_size）</td>
+</tr>
+<tr>
+<td><em>$as</em>_parity</td>
+<td>当前迭代项索引的奇偶性，<code>even</code> 偶，<code>odd</code> 奇</td>
+</tr>
+<tr>
+<td><em>$as</em>_even</td>
+<td>布尔值，判断是否为<strong>偶数</strong>索引</td>
+</tr>
+<tr>
+<td><em>$as</em>_odd</td>
+<td>布尔值，判断是否为<strong>奇数</strong>索引</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="属性指令"><a href="#属性指令" class="headerlink" title="属性指令"></a>属性指令</h3><ul>
+<li><font color='orange'> 注意：以下<code>$name</code>将指代属性名称</font></li>
+</ul>
+<h4 id="t-att-name"><a href="#t-att-name" class="headerlink" title="t-att-$name"></a>t-att-<em>$name</em></h4><blockquote>
+<p>动态创建一个属性</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-foreach</span>=<span class="string">"[1, 2, 3]"</span> <span class="attr">t-as</span>=<span class="string">"item"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">t-att-test</span>=<span class="string">"item"</span>&gt;</span><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-esc</span>=<span class="string">"item"</span>/&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 渲染为 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">test</span>=<span class="string">"1"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">test</span>=<span class="string">"2"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">test</span>=<span class="string">"3"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="t-attf-name"><a href="#t-attf-name" class="headerlink" title="t-attf-$name"></a>t-attf-<em>$name</em></h4><blockquote>
+<p>与<code>t-att-$name</code>相同，但参数是一个格式字符串，常用于混合文字和非文字字符串</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-foreach</span>=<span class="string">"[1, 2, 3]"</span> <span class="attr">t-as</span>=<span class="string">"item"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">t-attf-class</span>=<span class="string">"row &#123;&#123; item_parity &#125;&#125;"</span>&gt;</span><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-esc</span>=<span class="string">"item"</span>/&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 渲染为 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"row even"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"row odd"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"row even"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="t-att-mapping"><a href="#t-att-mapping" class="headerlink" title="t-att=mapping"></a>t-att=mapping</h4><blockquote>
+<p>值是字典</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">t-att</span>=<span class="string">"&#123;'a': 1, 'b': 2&#125;"</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 渲染为 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">a</span>=<span class="string">"1"</span> <span class="attr">b</span>=<span class="string">"2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="t-att-pair"><a href="#t-att-pair" class="headerlink" title="t-att=pair"></a>t-att=pair</h4><blockquote>
+<p>值是 2 个元素的数组</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">t-att</span>=<span class="string">"['a', 'b']"</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 渲染为 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">a</span>=<span class="string">"b"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="设置变量指令"><a href="#设置变量指令" class="headerlink" title="设置变量指令"></a>设置变量指令</h3><h4 id="t-set"><a href="#t-set" class="headerlink" title="t-set"></a>t-set</h4><blockquote>
+<p>用于设置变量名称</p>
+</blockquote>
+<h4 id="t-value"><a href="#t-value" class="headerlink" title="t-value"></a>t-value</h4><blockquote>
+<p>变量的值</p>
+</blockquote>
+<ul>
+<li><p>有<code>t-value</code>，值即为变量的值</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-set</span>=<span class="string">"foo"</span> <span class="attr">t-value</span>=<span class="string">"2 + 1"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-esc</span>=<span class="string">"foo"</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 渲染为3 --&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>没有<code>t-value</code>，节点的内容即为变量的值</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-set</span>=<span class="string">"foo"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>ok<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-esc</span>=<span class="string">"foo"</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 渲染为 &lt;p&gt;ok&lt;/p&gt;(会转义) --&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<h3 id="调用子模板的指令"><a href="#调用子模板的指令" class="headerlink" title="调用子模板的指令"></a>调用子模板的指令</h3><h4 id="t-call"><a href="#t-call" class="headerlink" title="t-call"></a>t-call</h4><ul>
+<li><p>调用子模板，并传入变量</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 子模板 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-name</span>=<span class="string">"sub-template"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-esc</span>=<span class="string">"var"</span>/&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 调用子模板并定义一个变量 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-call</span>=<span class="string">"sub-template"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">t</span> <span class="attr">t-set</span>=<span class="string">"var"</span> <span class="attr">t-value</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 渲染为 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>call 指令的主体可以是任意复杂的（不仅仅是 set 指令），其将在被调用模板中作为一个<code>0</code>的变量呈现</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 子模板 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-name</span>=<span class="string">"sub-template"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    This template was called with content:</span><br><span class="line">    <span class="tag">&lt;<span class="name">t</span> <span class="attr">t-raw</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 调用子模板，并定义主体内容 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-call</span>=<span class="string">"other-template"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">em</span>&gt;</span>content<span class="tag">&lt;/<span class="name">em</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 渲染为 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  This template was called with content:</span><br><span class="line">  <span class="tag">&lt;<span class="name">em</span>&gt;</span>content<span class="tag">&lt;/<span class="name">em</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<h3 id="模板继承指令"><a href="#模板继承指令" class="headerlink" title="模板继承指令"></a>模板继承指令</h3><h4 id="t-extend"><a href="#t-extend" class="headerlink" title="t-extend"></a>t-extend</h4><blockquote>
+<p>值为要继承修改的现有模板的名称(t-name 的名字)<br>用于更改现有模板<br><strong><mark>如果<code>t-name</code>与<code>t-extend</code>  同时存在，则新建指定名称的模板，而不会修改现有模板</mark></strong></p>
+</blockquote>
+<h4 id="t-jquery"><a href="#t-jquery" class="headerlink" title="t-jquery"></a>t-jquery</h4><blockquote>
+<p>值为 css 选择器，用于匹配现有模板中的节点内容</p>
+</blockquote>
+<h4 id="t-operation"><a href="#t-operation" class="headerlink" title="t-operation"></a>t-operation</h4><blockquote>
+<p>对<code>t-jquery</code>匹配到的元素进行指定的操作</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>append</code></td>
+<td>用于添加子节点(后面)，等同于 jquery 的<code>append()</code></td>
+</tr>
+<tr>
+<td><code>prepend</code></td>
+<td>用于添加子节点(前面)，等同于 jquery 的<code>prepend()</code></td>
+</tr>
+<tr>
+<td><code>before</code></td>
+<td>在当前节点前添加节点(同级)，等同于 jquery 的 <code>before()</code></td>
+</tr>
+<tr>
+<td><code>after</code></td>
+<td>在当前节点后添加节点(同级)，等同于 jquery 的 <code>after()</code></td>
+</tr>
+<tr>
+<td><code>inner</code></td>
+<td>替换子节点，等同于 jquery 的 <code>html()</code></td>
+</tr>
+<tr>
+<td><code>replace</code></td>
+<td>替换当前节点包括子节点，等同于 jquery 的 <code>replaceWith()</code></td>
+</tr>
+<tr>
+<td><code>attributes</code></td>
+<td>用于添加属性，有则替换，无则添加，等同于 jquery 的 <code>attr()</code></td>
+</tr>
+<tr>
+<td>没有<code>t-operation</code></td>
+<td>通过 javascript 执行相应的逻辑，<code>this</code>指向<code>t-jquery</code> 匹配的 jquery 对象</td>
+</tr>
+</tbody></table>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-extend</span>=<span class="string">"base.template"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">t</span> <span class="attr">t-jquery</span>=<span class="string">"ul"</span> <span class="attr">t-operation</span>=<span class="string">"append"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>new element<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 通过attributes添加class属性 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-jquery</span>=<span class="string">".o_viewer_img_wrapper"</span> <span class="attr">t-operation</span>=<span class="string">"attributes"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">attribute</span> <span class="attr">name</span>=<span class="string">"class"</span>&gt;</span>col-lg-6 col-12<span class="tag">&lt;/<span class="name">attribute</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 通过js添加class样式类 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-jquery</span>=<span class="string">".o_viewer_img_wrapper"</span>&gt;</span></span><br><span class="line">  this.addClass('position-relative');</span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="调试指令"><a href="#调试指令" class="headerlink" title="调试指令"></a>调试指令</h3><blockquote>
+<p>主要用于开发阶段的调试工作</p>
+</blockquote>
+<h4 id="t-log"><a href="#t-log" class="headerlink" title="t-log"></a>t-log</h4><blockquote>
+<p>用于打印，相当于 console.log</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-set</span>=<span class="string">"foo"</span> <span class="attr">t-value</span>=<span class="string">"42"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-log</span>=<span class="string">"foo"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="t-debug"><a href="#t-debug" class="headerlink" title="t-debug"></a>t-debug</h4><blockquote>
+<p>模板中的断点，相当于 js 中的 debugger，在开发者模式下会进入断点</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-if</span>=<span class="string">"a_test"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">t</span> <span class="attr">t-debug</span>=<span class="string">""</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="t-js"><a href="#t-js" class="headerlink" title="t-js"></a>t-js</h4><blockquote>
+<p>模板呈现期间执行的 jsvascript 代码，获取一个 context 上下文参数</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-set</span>=<span class="string">"foo"</span> <span class="attr">t-value</span>=<span class="string">"42"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-js</span>=<span class="string">"ctx"</span>&gt;</span></span><br><span class="line">  console.log("Foo is", ctx.foo);</span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="模板调用-javascript"><a href="#模板调用-javascript" class="headerlink" title="模板调用(javascript)"></a>模板调用(javascript)</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-name</span>=<span class="string">"custom-template"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-esc</span>=<span class="string">"testValue"</span> /&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> core = <span class="built_in">require</span>(<span class="string">'web.core'</span>);</span><br><span class="line"><span class="keyword">var</span> qweb = core.qweb;</span><br><span class="line">qweb.render(<span class="string">'custom-template'</span>, &#123;</span><br><span class="line">  testValue: <span class="number">111</span>,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/odoo12/" rel="tag"><i class="fa fa-tag"></i> odoo12</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/03/04/odoo12/tree%E8%A7%86%E5%9B%BE.html" rel="prev" title="odoo Tree">
+      <i class="fa fa-chevron-left"></i> odoo Tree
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/03/04/odoo12/form%E8%A7%86%E5%9B%BE.html" rel="next" title="odoo form视图">
+      odoo form视图 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Qweb"><span class="nav-number">1.</span> <span class="nav-text">Qweb</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#qweb-常用指令"><span class="nav-number">1.1.</span> <span class="nav-text">qweb 常用指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模板声明指令"><span class="nav-number">1.1.1.</span> <span class="nav-text">模板声明指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#t-name"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">t-name</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据输出指令"><span class="nav-number">1.1.2.</span> <span class="nav-text">数据输出指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#t-esc"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">t-esc</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#t-raw"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">t-raw</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件指令"><span class="nav-number">1.1.3.</span> <span class="nav-text">条件指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环指令"><span class="nav-number">1.1.4.</span> <span class="nav-text">循环指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性指令"><span class="nav-number">1.1.5.</span> <span class="nav-text">属性指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#t-att-name"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">t-att-$name</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#t-attf-name"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">t-attf-$name</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#t-att-mapping"><span class="nav-number">1.1.5.3.</span> <span class="nav-text">t-att&#x3D;mapping</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#t-att-pair"><span class="nav-number">1.1.5.4.</span> <span class="nav-text">t-att&#x3D;pair</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置变量指令"><span class="nav-number">1.1.6.</span> <span class="nav-text">设置变量指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#t-set"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">t-set</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#t-value"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">t-value</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用子模板的指令"><span class="nav-number">1.1.7.</span> <span class="nav-text">调用子模板的指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#t-call"><span class="nav-number">1.1.7.1.</span> <span class="nav-text">t-call</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模板继承指令"><span class="nav-number">1.1.8.</span> <span class="nav-text">模板继承指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#t-extend"><span class="nav-number">1.1.8.1.</span> <span class="nav-text">t-extend</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#t-jquery"><span class="nav-number">1.1.8.2.</span> <span class="nav-text">t-jquery</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#t-operation"><span class="nav-number">1.1.8.3.</span> <span class="nav-text">t-operation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调试指令"><span class="nav-number">1.1.9.</span> <span class="nav-text">调试指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#t-log"><span class="nav-number">1.1.9.1.</span> <span class="nav-text">t-log</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#t-debug"><span class="nav-number">1.1.9.2.</span> <span class="nav-text">t-debug</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#t-js"><span class="nav-number">1.1.9.3.</span> <span class="nav-text">t-js</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板调用-javascript"><span class="nav-number">1.2.</span> <span class="nav-text">模板调用(javascript)</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="love_fly"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">love_fly</p>
+  <div class="site-description" itemprop="description">个人学习笔记</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">love_fly</span>
+</div>
+  <div class="powered-by" style="display: none;">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.jpeg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpeg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.lovefly0326.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Treetree 视图属性editable tree 视图可直接编辑   top 新建记录在列表顶部  bottom 新建记录在列表底部 1&lt;tree editable&#x3D;&quot;bottom&quot;&gt;...&lt;&#x2F;tree&gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="odoo Tree">
+<meta property="og:url" content="http://blog.lovefly0326.com/2021/03/04/odoo12/tree%E8%A7%86%E5%9B%BE.html">
+<meta property="og:site_name" content="love_fly">
+<meta property="og:description" content="Treetree 视图属性editable tree 视图可直接编辑   top 新建记录在列表顶部  bottom 新建记录在列表底部 1&lt;tree editable&#x3D;&quot;bottom&quot;&gt;...&lt;&#x2F;tree&gt;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-04T09:05:00.000Z">
+<meta property="article:modified_time" content="2021-09-23T05:43:52.639Z">
+<meta property="article:author" content="love_fly">
+<meta property="article:tag" content="odoo12">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://blog.lovefly0326.com/2021/03/04/odoo12/tree%E8%A7%86%E5%9B%BE.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>odoo Tree | love_fly</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">love_fly</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.lovefly0326.com/2021/03/04/odoo12/tree%E8%A7%86%E5%9B%BE.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="love_fly">
+      <meta itemprop="description" content="个人学习笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="love_fly">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          odoo Tree
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-04 17:05:00" itemprop="dateCreated datePublished" datetime="2021-03-04T17:05:00+08:00">2021-03-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-23 13:43:52" itemprop="dateModified" datetime="2021-09-23T13:43:52+08:00">2021-09-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/odoo12/" itemprop="url" rel="index"><span itemprop="name">odoo12</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Tree"><a href="#Tree" class="headerlink" title="Tree"></a>Tree</h1><h2 id="tree-视图属性"><a href="#tree-视图属性" class="headerlink" title="tree 视图属性"></a>tree 视图属性</h2><h3 id="editable"><a href="#editable" class="headerlink" title="editable"></a>editable</h3><blockquote>
+<p>tree 视图可直接编辑</p>
+</blockquote>
+<ul>
+<li><p><code>top</code> 新建记录在列表顶部</p>
+</li>
+<li><p><code>bottom</code> 新建记录在列表底部</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">tree</span> <span class="attr">editable</span>=<span class="string">"bottom"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">tree</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<a id="more"></a>
+
+<h3 id="default-order"><a href="#default-order" class="headerlink" title="default_order"></a>default_order</h3><blockquote>
+<p>根据给定顺序字段的值进行排序</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">tree</span> <span class="attr">default_order</span>=<span class="string">"sequence,name desc"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">tree</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="decoration-name"><a href="#decoration-name" class="headerlink" title="decoration-{$name}"></a>decoration-{$name}</h3><blockquote>
+<p>允许基于相应记录的属性更改行文本的样式，值是 Python 表达式</p>
+</blockquote>
+<ul>
+<li><p><code>decoration-bf</code> 字体加粗，相当于<code>font-weight: bold</code></p>
+</li>
+<li><p><code>decoration-it</code> 斜体，相当于<code>font-style: italic</code></p>
+</li>
+<li><p><code>$name</code> 颜色相关(<code>danger</code>, <code>info</code>, <code>muted</code>, <code>primary</code>, <code>success</code>, <code>warning</code>)</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">tree</span> <span class="attr">decoration-bf</span>=<span class="string">"message_needaction==True"</span> <span class="attr">decoration-primary</span>=<span class="string">"True"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"message_needaction"</span> <span class="attr">invisible</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tree</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="create、delete"><a href="#create、delete" class="headerlink" title="create、delete"></a>create、delete</h3><blockquote>
+<p>禁止创建和删除记录(即隐藏<code>创建</code>和<code>删除</code>按钮)</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">tree</span> <span class="attr">create</span>=<span class="string">"false"</span> <span class="attr">delete</span>=<span class="string">"false"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">tree</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="limit"><a href="#limit" class="headerlink" title="limit"></a>limit</h3><blockquote>
+<p>默认一页的数量(<em>正整数</em>)</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 默认一页80条 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tree</span> <span class="attr">limit</span>=<span class="string">"80"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">tree</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="tree-视图可包含的子元素"><a href="#tree-视图可包含的子元素" class="headerlink" title="tree 视图可包含的子元素"></a>tree 视图可包含的子元素</h2><h3 id="button"><a href="#button" class="headerlink" title="button"></a><strong>button</strong></h3><blockquote>
+<p>在<code>tree</code>视图列表单元格中显示按钮，执行特定的动作</p>
+</blockquote>
+<h4 id="icon"><a href="#icon" class="headerlink" title="icon"></a>icon</h4><blockquote>
+<p>按钮图标</p>
+</blockquote>
+<ul>
+<li><p>以<code>fa-</code>开头，会渲染成<code>i</code>标签，使用 Font Awsome 图标库的图标</p>
+</li>
+<li><p>图片相对路径，渲染成<code>img</code>标签</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">tree</span> <span class="attr">create</span>=<span class="string">"false"</span> <span class="attr">delete</span>=<span class="string">"false"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"object"</span> <span class="attr">icon</span>=<span class="string">"fa-edit"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"object"</span> <span class="attr">icon</span>=<span class="string">"/dy_base/static/src/img/icon/favicon.png"</span> /&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tree</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="string"><a href="#string" class="headerlink" title="string"></a>string</h4><ul>
+<li>没有设置<code>icon</code>，显示为文本按钮</li>
+<li>设置了<code>icon</code>，只显示图标，string 作为按钮的<code>title</code>属性</li>
+</ul>
+<h4 id="type"><a href="#type" class="headerlink" title="type"></a>type</h4><ul>
+<li><p><code>object</code> 使用当前记录的 id 和当前的上下文，调用列表模型上的<code>name</code>对应的方法</p>
+</li>
+<li><p><code>action</code> 加载<code>name</code>对应的 action，上下文扩展为 list 的模型(<code>active_model</code>)，当前行的记录(<code>active_id</code>)和 list 中所有已加载的记录(<code>active_ids</code>)</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- object --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"object"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">name</span>=<span class="string">"open_translations"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">string</span>=<span class="string">"Edit Translations"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">class</span>=<span class="string">"oe_link oe_right"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- action --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"action"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">name</span>=<span class="string">"%(action_email_server_tree)d"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">string</span>=<span class="string">"Incoming Email Servers"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">icon</span>=<span class="string">"fa-arrow-right"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">class</span>=<span class="string">"btn-link"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="name"><a href="#name" class="headerlink" title="name"></a>name</h4><blockquote>
+<p>参照 <code>type</code></p>
+</blockquote>
+<h4 id="args"><a href="#args" class="headerlink" title="args"></a>args</h4><blockquote>
+<p>传递给<code>name</code>方法的参数（列表），不常用</p>
+</blockquote>
+<h4 id="attrs"><a href="#attrs" class="headerlink" title="attrs"></a>attrs</h4><ul>
+<li><p><code>invisible</code> 一个 domain 条件，在当前记录的上下文中求值，为 True 则隐藏，为 False 则显示</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">tree</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"object"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">name</span>=<span class="string">"open_translations"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">string</span>=<span class="string">"Edit"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">icon</span>=<span class="string">"fa-edit"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">attrs</span>=<span class="string">"&#123;'invisible': [('name', '!=', '张三')]&#125;"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tree</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="states"><a href="#states" class="headerlink" title="states"></a>states</h4><ul>
+<li><p><code>invisible</code> 的简写，值列表通过逗号分隔。<mark>要求模型中有<code>state</code> 字段，并且在视图中使用该字段。</mark></p>
+</li>
+<li><p><code>state</code> 字段的值如果不在<code>states</code>值列表中，则隐藏 button</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">state = fields.Selection([(<span class="string">'open'</span>, <span class="string">'To Do'</span>), (<span class="string">'processing'</span>, <span class="string">'Processing'</span>), (<span class="string">'done'</span>, <span class="string">'Done'</span>)], string=<span class="string">'Status'</span>, default=<span class="string">'open'</span>, required=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">tree</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"state"</span> /&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- states的方式 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"object"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">name</span>=<span class="string">"action_open"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">string</span>=<span class="string">"Todo"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">icon</span>=<span class="string">"fa-exchange"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">states</span>=<span class="string">"processing,done"</span> /&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 同invisible的方式 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"object"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">name</span>=<span class="string">"action_open"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">string</span>=<span class="string">"Todo"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">icon</span>=<span class="string">"fa-exchange"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">attrs</span>=<span class="string">"&#123;'invisible': [('state', 'in', ['processing', 'done'])]&#125;"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tree</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong><font color=red>注意点</font></strong>：<code>states</code>和<code>attrs</code>一起使用可能会导致意外的结果，因为 domain 通过 <code>AND</code> 连接</p>
+</li>
+</ul>
+<h4 id="context"><a href="#context" class="headerlink" title="context"></a>context</h4><blockquote>
+<p>执行按钮的调用动作时会合并到视图的上下文中</p>
+</blockquote>
+<h4 id="class"><a href="#class" class="headerlink" title="class"></a>class</h4><blockquote>
+<p>样式类，可自定义类，也可以直接使用<code>bootstrap</code> 类</p>
+</blockquote>
+<hr>
+<h3 id="field"><a href="#field" class="headerlink" title="field"></a><strong>field</strong></h3><blockquote>
+<p><code>tree</code>视图每列显示的字段</p>
+</blockquote>
+<h4 id="name-1"><a href="#name-1" class="headerlink" title="name"></a>name</h4><blockquote>
+<p>当前模型中定义的字段名称。<mark>同一个<code>name</code>每个视图中只能使用一次</mark></p>
+</blockquote>
+<h4 id="string-1"><a href="#string-1" class="headerlink" title="string"></a>string</h4><ul>
+<li>列标题默认使用模型字段的<code>string</code></li>
+<li>可通过 field 属性<code>string</code> 覆盖模型中的 string</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 字段定义</span></span><br><span class="line">time_efficiency = fields.Float(<span class="string">'Efficiency Factor'</span>, default=<span class="number">100</span>, required=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#. module: resource</span></span><br><span class="line"><span class="comment">#: model:ir.model.fields,field_description:resource.field_resource_resource__time_efficiency</span></span><br><span class="line">msgid <span class="string">"Efficiency Factor"</span></span><br><span class="line">msgstr <span class="string">"效率因子"</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 列标题默认使用模型中的String，翻译后为: 效率因子 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"time_efficiency"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 使用string属性覆盖模型中的string，列标题为: 效率因子1 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"time_efficiency"</span> <span class="attr">string</span>=<span class="string">"效率因子1"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="invisible"><a href="#invisible" class="headerlink" title="invisible"></a>invisible</h4><ul>
+<li><p>获取并储存，但是不显示在表格中的字段</p>
+</li>
+<li><p>对于需要被使用，但不需要显示的字段是必须的。比如<code>decoration-{$name}</code>表达式中依赖的字段</p>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">tree</span> <span class="attr">decoration-bf</span>=<span class="string">"message_needaction==True"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"message_needaction"</span> <span class="attr">invisible</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tree</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="groups"><a href="#groups" class="headerlink" title="groups"></a>groups</h4><blockquote>
+<p>权限组(可以看到该字段的权限组，多个以逗号隔开)</p>
+</blockquote>
+<h4 id="widget"><a href="#widget" class="headerlink" title="widget"></a>widget</h4><blockquote>
+<p>字段挂件（将字段以特定的方式展示），具体参考 widget</p>
+</blockquote>
+<h4 id="sum、avg、max、min"><a href="#sum、avg、max、min" class="headerlink" title="sum、avg、max、min"></a>sum、avg、max、min</h4><blockquote>
+<p>列汇总求和、平均值、最大值、最小值</p>
+</blockquote>
+<h4 id="attrs-1"><a href="#attrs-1" class="headerlink" title="attrs"></a>attrs</h4><blockquote>
+<p>基于记录值的动态属性，只会作于当前字段</p>
+</blockquote>
+<ul>
+<li><p><code>invisible</code> 当前记录的当前字段列是否隐藏（不会隐藏列）</p>
+</li>
+<li><p><code>column_invisible</code> 常用于根据父对象隐藏列(<code>多用于X2Many字段</code>)</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"lookup_value_ids"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tree</span> <span class="attr">string</span>=<span class="string">"Values"</span> <span class="attr">editable</span>=<span class="string">"bottom"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 只隐藏当前记录的值 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"code"</span> <span class="attr">attrs</span>=<span class="string">"&#123;'invisible': [('active_flag', '=', True)]&#125;"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 隐藏name对应的列 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">attrs</span>=<span class="string">"&#123;'column_invisible': [('parent.code', '=', 'wkf_activity_type')]&#125;"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"active_flag"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tree</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<h3 id="lt-control-gt"><a href="#lt-control-gt" class="headerlink" title="&lt;control&gt;"></a><strong>&lt;control&gt;</strong></h3><blockquote>
+<p>为当前视图定义自定义控件(one2many)。不支持任何属性，可以有子级(<code>&lt;create&gt;</code> )<br>不自定义 control 时，默认值是<code>Add a line</code>(<code>添加明细行</code>)<br><strong>只会在编辑状态且 create=”1”(<em>默认就为 1</em>)的情况下生效</strong></p>
+</blockquote>
+<h4 id="lt-create-gt"><a href="#lt-create-gt" class="headerlink" title="&lt;create&gt;"></a>&lt;create&gt;</h4><blockquote>
+<p>添加按钮以在当前列表中创建新元素</p>
+</blockquote>
+<ul>
+<li><code>string</code> 按钮名称</li>
+<li><code>context</code> 检索新记录的默认值时，将合并到现有上下文中。例如覆盖默认值</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 以下示例会添加三个自定义按钮，替换默认的 Add a line --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"lookup_value_ids"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tree</span> <span class="attr">string</span>=<span class="string">"Values"</span> <span class="attr">create</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">control</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">create</span> <span class="attr">string</span>=<span class="string">"添加明细行1"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">create</span> <span class="attr">string</span>=<span class="string">"添加明细行2"</span> <span class="attr">context</span>=<span class="string">"&#123;'default_display_type': 'line_section'&#125;"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">create</span> <span class="attr">string</span>=<span class="string">"添加明细行3"</span> <span class="attr">context</span>=<span class="string">"&#123;'default_display_type': 'line_note'&#125;"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">control</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tree</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/odoo12/" rel="tag"><i class="fa fa-tag"></i> odoo12</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/03/04/odoo12/%E5%B8%B8%E7%94%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88(%E5%A4%87%E5%BF%98%E5%BD%95).html" rel="prev" title="odoo常用解决方案(备忘录)">
+      <i class="fa fa-chevron-left"></i> odoo常用解决方案(备忘录)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/03/04/odoo12/Qweb.html" rel="next" title="odoo Qweb">
+      odoo Qweb <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Tree"><span class="nav-number">1.</span> <span class="nav-text">Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#tree-视图属性"><span class="nav-number">1.1.</span> <span class="nav-text">tree 视图属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#editable"><span class="nav-number">1.1.1.</span> <span class="nav-text">editable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#default-order"><span class="nav-number">1.1.2.</span> <span class="nav-text">default_order</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#decoration-name"><span class="nav-number">1.1.3.</span> <span class="nav-text">decoration-{$name}</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#create、delete"><span class="nav-number">1.1.4.</span> <span class="nav-text">create、delete</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#limit"><span class="nav-number">1.1.5.</span> <span class="nav-text">limit</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tree-视图可包含的子元素"><span class="nav-number">1.2.</span> <span class="nav-text">tree 视图可包含的子元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#button"><span class="nav-number">1.2.1.</span> <span class="nav-text">button</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#icon"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">icon</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#string"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">string</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#type"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">type</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#name"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">name</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#args"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">args</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#attrs"><span class="nav-number">1.2.1.6.</span> <span class="nav-text">attrs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#states"><span class="nav-number">1.2.1.7.</span> <span class="nav-text">states</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#context"><span class="nav-number">1.2.1.8.</span> <span class="nav-text">context</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#class"><span class="nav-number">1.2.1.9.</span> <span class="nav-text">class</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#field"><span class="nav-number">1.2.2.</span> <span class="nav-text">field</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#name-1"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">name</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#string-1"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">string</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#invisible"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">invisible</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#groups"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">groups</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#widget"><span class="nav-number">1.2.2.5.</span> <span class="nav-text">widget</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sum、avg、max、min"><span class="nav-number">1.2.2.6.</span> <span class="nav-text">sum、avg、max、min</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#attrs-1"><span class="nav-number">1.2.2.7.</span> <span class="nav-text">attrs</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-control-gt"><span class="nav-number">1.2.3.</span> <span class="nav-text">&lt;control&gt;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lt-create-gt"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">&lt;create&gt;</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="love_fly"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">love_fly</p>
+  <div class="site-description" itemprop="description">个人学习笔记</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">love_fly</span>
+</div>
+  <div class="powered-by" style="display: none;">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
